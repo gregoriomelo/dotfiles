@@ -15,5 +15,6 @@
 	ui = true
 [core]
 	editor = vim
+	excludesfile = ~/.config/git/global_ignore
 [merge]
 	tool = opendiff
