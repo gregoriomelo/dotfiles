@@ -2,7 +2,7 @@
 
 set -e
 
-PROGRAMS=(git)
+PROGRAMS=(git zsh)
 STOW_DIR=~
 
 for program in ${PROGRAMS[@]}; do

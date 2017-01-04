@@ -1,0 +1,7 @@
+alias lr='lein repl'
+alias lrs='lein ring server'
+function lrsh {
+  lein ring server-headless $1
+}
+alias lm='lein midje'
+alias lma='lm :autotest'

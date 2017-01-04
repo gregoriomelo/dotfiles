@@ -1,0 +1,14 @@
+alias ls="ls -l -G"
+
+alias v='vim'
+
+export DEV_HOME=~/dev
+alias dev='cd $DEV_HOME'
+
+function http_server {
+  python -m SimpleHTTPServer $1 > /dev/null 2>&1
+}
+
+function proj {
+  cd $DEV_HOME/projects/$1/$2
+}
