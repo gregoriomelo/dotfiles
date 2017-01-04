@@ -1,0 +1,19 @@
+[user]
+	name = Gregório Melo
+	email = gregorio@gregoriomelo.com
+[alias]
+	st = status
+	s = status
+	ci = commit
+	co = checkout
+	br = branch
+	l = log --oneline
+	lt = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	cl = clone
+	pr = pull --rebase
+[color]
+	ui = true
+[core]
+	editor = vim
+[merge]
+	tool = opendiff

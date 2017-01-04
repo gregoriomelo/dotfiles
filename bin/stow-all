@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+PROGRAMS=(git)
+STOW_DIR=~
+
+for program in ${PROGRAMS[@]}; do
+  stow -t $STOW_DIR $program
+  echo "Stowing $program"
+done
+
+echo "Done!"
