@@ -5,6 +5,7 @@ Based on [this repo](https://github.com/juandazapata/dotfiles)
 ## Installation
 
 ```
-brew install stow
+brew tap homebrew/bundle
+brew bundle
 sh bin/stow-all
 ```

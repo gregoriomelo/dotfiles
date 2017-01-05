@@ -1,0 +1,6 @@
+brew 'zsh'
+brew 'zsh-completions'
+brew 'tmux'
+brew 'git'
+brew 'stow'
+brew 'leiningen'
