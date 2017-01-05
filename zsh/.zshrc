@@ -11,5 +11,6 @@ source ~/.config/zsh/aliases/git
 source ~/.config/zsh/aliases/clojure
 source ~/.config/zsh/aliases/vagrant
 source ~/.config/zsh/aliases/docker
+source ~/.config/zsh/aliases/brew
 source ~/.config/zsh/aliases/misc
 source ~/.config/zsh/env
