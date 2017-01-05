@@ -2,7 +2,7 @@
 
 set -e
 
-PROGRAMS=(git zsh tmux)
+PROGRAMS=(git zsh tmux vim ruby)
 STOW_DIR=~
 
 for program in ${PROGRAMS[@]}; do
