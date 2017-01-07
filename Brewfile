@@ -1,3 +1,4 @@
+brew 'vim'
 brew 'zsh'
 brew 'zsh-completions'
 brew 'tmux'

@@ -1,1 +1,2 @@
 Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-markdown'
