@@ -17,6 +17,7 @@ cask 'spotify'
 cask 'vagrant'
 cask 'virtualbox'
 cask 'xquartz'
+cask 'flux'
 
 mas 'Slack', id: 803453959
 mas 'Magnet', id: 441258766
@@ -28,3 +29,5 @@ mas 'XCode', id: 497799835
 
 tap 'caskroom/fonts'
 cask 'font-open-sans'
+
+brew tap homebrew/services
