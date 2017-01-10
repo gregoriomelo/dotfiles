@@ -30,4 +30,4 @@ mas 'XCode', id: 497799835
 tap 'caskroom/fonts'
 cask 'font-open-sans'
 
-brew tap homebrew/services
+tap 'homebrew/services'
