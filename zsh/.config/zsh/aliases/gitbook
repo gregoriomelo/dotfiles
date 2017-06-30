@@ -1,1 +1,0 @@
-alias gitbook='docker run -it -v $PWD:/home/book -w /home/book --rm -p 4000:4000 --name gitbook gregoriomelo/gitbook gitbook'

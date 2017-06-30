@@ -5,6 +5,7 @@ brew 'tmux'
 brew 'git'
 brew 'stow'
 brew 'leiningen'
+brew 'pass'
 
 tap 'caskroom/cask'
 cask 'calibre'
