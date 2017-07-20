@@ -1,10 +1,12 @@
 [user]
 	name = Gregório Melo
 	email = gregorio@gregoriomelo.com
+	signingkey = AA5C942FC9EC5C90
+	gpgsign = true
 [alias]
 	st = status
 	s = status
-	ci = commit
+	ci = commit -S
 	co = checkout
 	br = branch
 	l = log --oneline
