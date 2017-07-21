@@ -10,4 +10,8 @@ for program in ${PROGRAMS[@]}; do
   echo "Stowing $program"
 done
 
+# gnupg
+stow -t $STOW_DIR/.gnupg gnupg
+echo "Stowing gnupg"
+
 echo "Done!"
