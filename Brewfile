@@ -9,7 +9,9 @@ brew 'zsh-completions'
 brew 'tmux'
 brew 'git'
 brew 'stow'
-brew 'pass'
+
+tap 'justwatchcom/gopass'
+brew 'gopass'
 
 ###############
 # programming #

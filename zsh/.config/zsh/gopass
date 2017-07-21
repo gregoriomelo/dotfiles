@@ -1,0 +1,2 @@
+alias gopass="EDITOR=vim gopass"
+source <(gopass completion zsh)

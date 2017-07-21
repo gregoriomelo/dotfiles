@@ -14,3 +14,4 @@ source ~/.config/zsh/aliases/misc
 
 source ~/.config/zsh/env
 source ~/.config/zsh/gnupg
+source ~/.config/zsh/gopass
