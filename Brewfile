@@ -12,6 +12,7 @@ brew 'stow'
 
 tap 'justwatchcom/gopass'
 brew 'gopass'
+brew 'pinentry-mac'
 
 ###############
 # programming #
