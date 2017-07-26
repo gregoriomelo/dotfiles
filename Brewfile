@@ -14,6 +14,12 @@ tap 'justwatchcom/gopass'
 brew 'gopass'
 brew 'pinentry-mac'
 
+############
+# blogging #
+############
+
+brew 'hugo'
+
 ###############
 # programming #
 ###############
