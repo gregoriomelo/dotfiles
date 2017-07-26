@@ -1,4 +1,3 @@
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-markdown'
 Plugin 'fsharp/vim-fsharp'
-Plugin 'alvan/vim-closetag'
