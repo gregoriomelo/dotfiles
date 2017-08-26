@@ -1,4 +1,6 @@
 alias ls="ls -l -G"
+alias h="history"
+alias hg="history | grep"
 
 alias v='vim'
 
