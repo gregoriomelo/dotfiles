@@ -42,6 +42,7 @@ brew 'forge'
 cask 'docker'
 cask 'vagrant'
 cask 'virtualbox'
+brew 'reattach-to-user-namespace'
 
 ########
 # apps #
