@@ -4,8 +4,8 @@ alias hg="history | grep"
 
 alias v='vim'
 
-export DEV_HOME=~/dev
 alias dev='cd $DEV_HOME'
+alias dotfiles='cd $DOTFILES_HOME'
 
 function http_server {
   python -m SimpleHTTPServer $1 > /dev/null 2>&1
