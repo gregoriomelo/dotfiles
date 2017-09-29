@@ -50,6 +50,7 @@ brew 'reattach-to-user-namespace'
 
 cask 'calibre'
 cask 'firefox'
+cask 'google-chrome'
 cask 'screenhero'
 cask 'skype'
 cask 'spotify'
