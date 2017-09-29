@@ -63,6 +63,13 @@ mas 'Twitter', id: 409789998
 mas 'Evernote', id: 406056744
 mas 'The Unarchiver', id: 425424353
 
+##########
+# gaming #
+##########
+
+cask 'steam'
+cask 'gog-galaxy'
+
 #########
 # fonts #
 #########
