@@ -1,6 +1,7 @@
 #!/bin/zsh
 
-declare DOTFILES_HOME=${HOME}/dev/dotfiles
+declare BASE_PATH=${1:-$HOME}
+declare DOTFILES_HOME=${BASE_PATH}/dotfiles
 
 # Check for required dependencies before continuing:
 hash git 2>/dev/null || { echo "Error: git is not installed. Please install git first."; exit 1;}
