@@ -45,13 +45,25 @@ cask 'virtualbox'
 brew 'reattach-to-user-namespace'
 brew "emacs", args: ["with-cocoa"]
 
+############
+# browsers #
+############
+
+cask 'firefox'
+cask 'google-chrome'
+
+###########
+# storage #
+###########
+
+cask 'dropbox'
+cask 'box-sync'
+
 ########
 # apps #
 ########
 
 cask 'calibre'
-cask 'firefox'
-cask 'google-chrome'
 cask 'screenhero'
 cask 'skype'
 cask 'spotify'
