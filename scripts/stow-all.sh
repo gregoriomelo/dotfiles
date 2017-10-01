@@ -2,6 +2,7 @@
 
 set -e
 
+echo "Applying my personal set up with stow"
 PROGRAMS=(git zsh tmux vim ruby)
 STOW_DIR=~
 

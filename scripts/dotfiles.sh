@@ -8,9 +8,3 @@ if [ ! -d "$DOTFILES_HOME" ]; then
 else
   git -C $DOTFILES_HOME pull
 fi
-
-echo "Applying my personal set up"
-cd $DOTFILES_HOME
-brew tap homebrew/bundle
-brew bundle
-sh scripts/stow-all.sh
