@@ -13,12 +13,12 @@ rm -f ~/.vimrc.bundles.local
 rm -f ~/.vimrc.local
 
 for program in ${PROGRAMS[@]}; do
-  stow -t $STOW_DIR $program
   echo "Stowing $program"
+  stow -t $STOW_DIR $program
 done
 
 # gnupg
-stow -t $STOW_DIR/.gnupg gnupg
 echo "Stowing gnupg"
+stow -t $STOW_DIR/.gnupg gnupg
 
 echo "Done!"
