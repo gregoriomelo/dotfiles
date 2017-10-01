@@ -9,5 +9,4 @@ if [ ! -d "$BASE_PATH/maximum-awesome" ]; then
 fi
 cd $BASE_PATH/maximum-awesome
 rake
-rm ~/.tmux.conf
 cd $DOTFILES_HOME
