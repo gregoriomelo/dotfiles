@@ -43,6 +43,7 @@ cask 'docker'
 cask 'vagrant'
 cask 'virtualbox'
 brew 'reattach-to-user-namespace'
+brew "emacs", args: ["with-cocoa"]
 
 ########
 # apps #
