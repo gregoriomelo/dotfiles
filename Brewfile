@@ -69,6 +69,7 @@ cask 'skype'
 cask 'spotify'
 cask 'xquartz'
 cask 'flux'
+cask 'authy'
 mas 'Slack', id: 803453959
 mas 'Magnet', id: 441258766
 mas 'Pocket', id: 568494494
