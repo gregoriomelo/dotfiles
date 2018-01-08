@@ -66,12 +66,13 @@ cask 'box-sync'
 ########
 
 cask 'calibre'
-cask 'screenhero'
 cask 'skype'
 cask 'spotify'
 cask 'xquartz'
 cask 'flux'
 cask 'authy'
+cask 'discord'
+cask 'caffeine'
 mas 'Slack', id: 803453959
 mas 'Magnet', id: 441258766
 mas 'Pocket', id: 568494494
