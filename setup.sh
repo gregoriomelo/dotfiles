@@ -7,7 +7,12 @@ DOTFILES_HOME=${BASE_PATH}/dotfiles
 
 mkdir -p $BASE_PATH
 
-. scripts/dotfiles.sh
+echo "Getting my dotfiles and storing them at $DOTFILES_HOME"
+if [ ! -d "$DOTFILES_HOME" ]; then
+  git clone https://github.com/gregoriomelo/dotfiles.git $DOTFILES_HOME
+else
+  git -C $DOTFILES_HOME pull
+fi
 
 cd $DOTFILES_HOME
 
@@ -18,3 +23,5 @@ cd $DOTFILES_HOME
 sh scripts/oh-my-zsh.sh
 . scripts/gpg.sh
 . scripts/stow-all.sh
+. scripts/gopass.sh
+. scripts/system-preferences.sh
