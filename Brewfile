@@ -32,6 +32,8 @@ cask 'java' unless system '/usr/libexec/java_home --failfast'
 cask 'eclipse-java'
 cask 'intellij-idea-ce'
 brew 'leiningen'
+brew 'maven'
+brew 'gradle'
 
 # .net
 brew 'mono'
