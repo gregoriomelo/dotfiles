@@ -99,4 +99,3 @@ cask 'gog-galaxy'
 tap 'caskroom/fonts'
 cask 'font-open-sans'
 
-tap 'homebrew/services'
