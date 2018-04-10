@@ -31,6 +31,7 @@ mas 'XCode', id: 497799835
 cask 'java' unless system '/usr/libexec/java_home --failfast'
 cask 'eclipse-java'
 cask 'intellij-idea-ce'
+brew 'gradle'
 brew 'leiningen'
 brew 'maven'
 brew 'gradle'
@@ -41,6 +42,9 @@ cask 'visual-studio-code'
 cask 'visual-studio'
 tap 'samritchie/forge'
 brew 'forge'
+
+# .node
+brew 'node'
 
 # misc
 cask 'docker'
