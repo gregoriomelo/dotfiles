@@ -25,3 +25,4 @@ sh scripts/oh-my-zsh.sh
 . scripts/stow-all.sh
 . scripts/gopass.sh
 . scripts/system-preferences.sh
+. scripts/gitbook.sh
