@@ -7,6 +7,9 @@ alias v='vim'
 alias dev='cd $DEV_HOME'
 alias dotfiles='cd $DOTFILES_HOME'
 
+alias p="gopass -c"
+alias shadd="ssh-add ~/.ssh/github_rsa ~/.ssh/gitlab_rsa"
+
 function http_server {
   python -m SimpleHTTPServer $1 > /dev/null 2>&1
 }
