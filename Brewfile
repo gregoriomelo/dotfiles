@@ -34,7 +34,6 @@ cask 'intellij-idea-ce'
 brew 'gradle'
 brew 'leiningen'
 brew 'maven'
-brew 'gradle'
 
 # .net
 brew 'mono'
