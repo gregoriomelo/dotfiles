@@ -104,6 +104,6 @@ cask 'font-open-sans'
 #######
 
 brew 'kops'
-brew 'minikube'
+cask 'minikube'
 brew 'awscli'
 brew 'terraform'
