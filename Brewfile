@@ -79,6 +79,7 @@ cask 'flux'
 cask 'authy'
 cask 'discord'
 cask 'caffeine'
+cask 'airtable'
 mas 'Slack', id: 803453959
 mas 'Magnet', id: 441258766
 mas 'Pocket', id: 568494494
@@ -99,3 +100,11 @@ cask 'gog-galaxy'
 tap 'caskroom/fonts'
 cask 'font-open-sans'
 
+#######
+# Ops #
+#######
+
+brew 'kops'
+brew 'minikube'
+brew 'awscli'
+brew 'terraform'
