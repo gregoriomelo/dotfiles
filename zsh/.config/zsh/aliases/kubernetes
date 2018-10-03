@@ -1,0 +1,14 @@
+alias k=kubectl
+alias kgp='kubectl get pods'
+alias kcontext="kubectl config get-contexts | grep '*' | awk '{print }'"
+
+
+alias ke="kubectl exec -it"
+
+function kebash {
+  ke $1 /bin/bash
+}
+
+function kesh {
+  ke $1 /bin/sh
+}
