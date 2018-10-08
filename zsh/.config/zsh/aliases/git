@@ -1,3 +1,4 @@
 alias g='git'
 alias gphm='git push heroku master'
 alias gpom='git push origin master'
+alias gpb="git push origin `git branch | grep \* | cut -d ' ' -f2`"
