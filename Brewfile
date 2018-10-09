@@ -10,6 +10,7 @@ brew 'tmux'
 brew 'git'
 brew 'stow'
 brew 'rg'
+brew 'jq'
 
 tap 'justwatchcom/gopass'
 brew 'gopass'
@@ -45,6 +46,9 @@ brew 'forge'
 
 # .node
 brew 'node'
+
+# python
+brew 'python3'
 
 # misc
 cask 'docker'
