@@ -20,7 +20,7 @@ cd $DOTFILES_HOME
 . scripts/maximum-awesome.sh
 . scripts/tmux.sh
 . scripts/brew.sh
-sh scripts/oh-my-zsh.sh
+#sh scripts/oh-my-zsh.sh
 . scripts/gpg.sh
 . scripts/stow-all.sh
 . scripts/gopass.sh

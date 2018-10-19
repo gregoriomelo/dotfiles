@@ -20,7 +20,7 @@ defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
 sudo systemsetup -setrestartfreeze on
 
 # Set System Sleep Idle Time to 60 Minutes
-sudo systemsetup -setcomputersleep 60
+sudo systemsetup -setcomputersleep 20
 
 # Disable AutoCorrect
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
@@ -42,10 +42,6 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 0
 
 # Enable Key Repeat
 defaults write -g ApplePressAndHoldEnabled -bool false
-
-# Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true

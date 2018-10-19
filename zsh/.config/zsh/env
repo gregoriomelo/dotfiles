@@ -1,4 +1,4 @@
-export PATH="/usr/local:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/9.6/bin/"
+export PATH="/usr/local:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/9.6/bin/:`echo $HOME`/bin"
 export JAVA_HOME=`/usr/libexec/java_home`
 export PATH=/Library/TeX/texbin:$PATH
 export PATH=$PATH:/Library/Frameworks/Mono.framework/Versions/Current/bin

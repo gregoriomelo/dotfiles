@@ -51,3 +51,7 @@ command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
 silent! autocmd VimEnter * RemoveConflictingAlignMaps
 
 set clipboard=unnamed
+
+" NERDTree
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,__pycache__,*.class
+let NERDTreeRespectWildIgnore=1
