@@ -16,7 +16,8 @@ set autoindent
 set bg=dark
 set paste
 
-set nocursorline " don't highlight current line
+
+set cursorline " don't highlight current line
 
 " keyboard shortcuts
 inoremap jj <ESC>
@@ -55,3 +56,5 @@ set clipboard=unnamed
 " NERDTree
 set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,__pycache__,*.class
 let NERDTreeRespectWildIgnore=1
+
+highlight Normal ctermbg=black
