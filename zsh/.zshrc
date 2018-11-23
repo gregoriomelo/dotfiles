@@ -12,6 +12,7 @@ source ~/.config/zsh/aliases/docker
 source ~/.config/zsh/aliases/brew
 source ~/.config/zsh/aliases/misc
 source ~/.config/zsh/aliases/kubernetes
+source ~/.config/zsh/aliases/terraform
 source ~/.config/zsh/aliases/private/*
 
 source ~/.config/zsh/env
