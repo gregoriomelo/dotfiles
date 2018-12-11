@@ -4,3 +4,5 @@ export PATH=/Library/TeX/texbin:$PATH
 export PATH=$PATH:/Library/Frameworks/Mono.framework/Versions/Current/bin
 export DEV_HOME=~/dev
 export DOTFILES_HOME=$DEV_HOME/dotfiles
+
+PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)%{$fg[yellow]%}$(__kube_ps1)%{$reset_color%} $ '

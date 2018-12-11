@@ -1,6 +1,4 @@
-alias k=kubectl
-alias kgp='kubectl get pods'
-alias kcontext="kubectl config get-contexts | grep '*' | awk '{print }'"
+alias kc="kubectl config get-contexts | grep '*' | awk '{print }'"
 alias ke="kubectl exec -it"
 
 function kebash {
@@ -9,4 +7,14 @@ function kebash {
 
 function kesh {
   ke $1 /bin/sh
+}
+
+__kube_ps1()
+{
+    # Get current context
+    CONTEXT=$(kc)
+
+    if [ -n "$CONTEXT" ]; then
+        echo "(k8s: ${CONTEXT})"
+    fi
 }
