@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-plugins=(git brew pass)
+plugins=(git brew pass kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
