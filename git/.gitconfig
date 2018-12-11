@@ -20,3 +20,5 @@
 	excludesfile = ~/.config/git/global_ignore
 [merge]
 	tool = opendiff
+[init]
+	templatedir = /Users/gregoriomelo/.git-templates
