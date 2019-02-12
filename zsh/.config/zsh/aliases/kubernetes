@@ -1,5 +1,6 @@
 alias kc="kubectl config get-contexts | grep '*' | awk '{print }'"
 alias ke="kubectl exec -it"
+alias kgpi='kgp -n kube-ingress'
 
 function kebash {
   ke $1 /bin/bash
