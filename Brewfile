@@ -114,3 +114,17 @@ brew 'awscli'
 brew 'terraform'
 brew 'cfssl'
 brew 'vault'
+
+########
+# asdf #
+########
+brew 'install'
+brew 'coreutils'
+brew 'automake'
+brew 'autoconf'
+brew 'openssl'
+brew 'libyaml'
+brew 'readline'
+brew 'libxslt'
+brew 'libtool'
+brew 'unixodbc'
