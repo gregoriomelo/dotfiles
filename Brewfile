@@ -44,8 +44,8 @@ cask 'visual-studio'
 tap 'samritchie/forge'
 brew 'forge'
 
-# .node
-brew 'node'
+# .node | Now managed with asdf
+# brew 'node'
 
 # python
 brew 'python3'
@@ -118,8 +118,8 @@ brew 'vault'
 ########
 # asdf #
 ########
-brew 'install'
 brew 'coreutils'
+brew 'gpg'
 brew 'automake'
 brew 'autoconf'
 brew 'openssl'
