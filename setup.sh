@@ -22,7 +22,6 @@ cd $DOTFILES_HOME
 . scripts/brew.sh
 #sh scripts/oh-my-zsh.sh
 . scripts/gpg.sh
-. scripts/asdf.sh
 . scripts/stow-all.sh
 . scripts/gopass.sh
 . scripts/system-preferences.sh

@@ -18,4 +18,3 @@ source ~/.config/zsh/aliases/private/*
 source ~/.config/zsh/env
 source ~/.config/zsh/gnupg
 source ~/.config/zsh/gopass
-source ~/.config/zsh/asdf
