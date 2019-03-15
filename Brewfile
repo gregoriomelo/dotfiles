@@ -31,7 +31,6 @@ mas 'XCode', id: 497799835
 
 # jvm
 cask 'java' unless system '/usr/libexec/java_home --failfast'
-cask 'eclipse-java'
 cask 'intellij-idea-ce'
 brew 'gradle'
 brew 'leiningen'
