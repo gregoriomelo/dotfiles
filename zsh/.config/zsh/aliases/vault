@@ -21,6 +21,10 @@ function kvf {
   kill -9 $(ps aux | grep 'port-forward service/vault' | grep -v 'grep' | awk '{print $2}')
 }
 
+function vault_lease_renew {
+  vault lease renew -increment 12h $1
+}
+
 alias vf=vault-forward
 alias vl=vault-login
 alias vr='vault read'

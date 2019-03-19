@@ -14,6 +14,7 @@ source ~/.config/zsh/aliases/misc
 source ~/.config/zsh/aliases/kubernetes
 source ~/.config/zsh/aliases/terraform
 source ~/.config/zsh/aliases/vault
+source ~/.config/zsh/aliases/aws
 source ~/.config/zsh/aliases/private/*
 
 source ~/.config/zsh/env
