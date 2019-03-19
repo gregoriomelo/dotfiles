@@ -1,0 +1,26 @@
+function vault-forward {
+  kubectl port-forward service/vault 8200:8202 >/dev/null &
+}
+
+function vault-login {
+  vault_pid=$(ps aux | grep 'port-forward service/vault' | grep -v 'grep' | awk '{print $2}')
+
+  if [ -n vault_pid ]; then
+    vault-forward
+  fi
+
+  vault login -method=github token=$GITHUB_VAULT_TOKEN
+
+  while [ $? != 0 ]; do
+    sleep 5
+    vault login -method=github token=$GITHUB_VAULT_TOKEN
+  done
+}
+
+function kvf {
+  kill -9 $(ps aux | grep 'port-forward service/vault' | grep -v 'grep' | awk '{print $2}')
+}
+
+alias vf=vault-forward
+alias vl=vault-login
+alias vr='vault read'
