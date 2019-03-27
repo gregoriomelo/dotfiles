@@ -4,7 +4,6 @@ plugins=(git brew pass kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
-# my aliases
 source ~/.config/zsh/aliases/git
 source ~/.config/zsh/aliases/clojure
 source ~/.config/zsh/aliases/vagrant
@@ -20,3 +19,5 @@ source ~/.config/zsh/aliases/private/*
 source ~/.config/zsh/env
 source ~/.config/zsh/gnupg
 source ~/.config/zsh/gopass
+
+eval "$(rbenv init - zsh)"

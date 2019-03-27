@@ -1,5 +1,6 @@
-export PATH="$HOME/bin:/usr/local:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin:`echo $HOME`/bin"
+export PATH="$HOME/bin:$HOME/.rbenv/bin:$HOME/gems/bin:/usr/local:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 export JAVA_HOME=`/usr/libexec/java_home`
+export GEM_HOME=$HOME/gems
 export PATH=/Library/TeX/texbin:$PATH
 export PATH=$PATH:/Library/Frameworks/Mono.framework/Versions/Current/bin
 export DEV_HOME=~/dev

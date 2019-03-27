@@ -49,6 +49,10 @@ brew 'node'
 # python
 brew 'python3'
 
+# ruby
+brew 'rbenv'
+brew 'ruby-build'
+
 # misc
 cask 'docker'
 cask 'vagrant'
