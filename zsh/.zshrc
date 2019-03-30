@@ -14,7 +14,13 @@ source ~/.config/zsh/aliases/kubernetes
 source ~/.config/zsh/aliases/terraform
 source ~/.config/zsh/aliases/vault
 source ~/.config/zsh/aliases/aws
-source ~/.config/zsh/aliases/private/*
+
+for file in ~/.config/zsh/aliases/private/*
+do
+  if [[ -f $file ]]; then
+    source $file
+  fi
+done
 
 source ~/.config/zsh/env
 source ~/.config/zsh/gnupg
