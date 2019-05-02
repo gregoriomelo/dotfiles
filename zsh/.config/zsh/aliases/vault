@@ -25,6 +25,19 @@ function vault_lease_renew {
   vault lease renew -increment 12h $1
 }
 
+function vault-aws-creds {
+  local role=${1}
+  vault read -format=json aws/creds/${role} \
+    | jq '.data.access_key, .data.secret_key, .data.security_token' -r \
+    | paste -d '=' <(echo -en "AWS_ACCESS_KEY_ID\nAWS_SECRET_ACCESS_KEY\nAWS_SESSION_TOKEN\n") - \
+    | sed -e 's/^/export /' \
+    | sed -e 's/$/;/'
+}
+
+function export-vault-aws-creds {
+  eval "$(vault-aws-creds $1)"
+}
+
 alias vf=vault-forward
 alias vl=vault-login
 alias vr='vault read'
