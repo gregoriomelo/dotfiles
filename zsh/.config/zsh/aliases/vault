@@ -26,16 +26,17 @@ function vault_lease_renew {
 }
 
 function vault-aws-creds {
-  local role=${1}
-  vault read -format=json aws/creds/${role} \
+  local environment=${1}
+  local role="${2:=operator}"
+  vault read -format=json ${environment}/creds/kubernetes-${role} \
     | jq '.data.access_key, .data.secret_key, .data.security_token' -r \
     | paste -d '=' <(echo -en "AWS_ACCESS_KEY_ID\nAWS_SECRET_ACCESS_KEY\nAWS_SESSION_TOKEN\n") - \
     | sed -e 's/^/export /' \
     | sed -e 's/$/;/'
 }
 
-function export-vault-aws-creds {
-  eval "$(vault-aws-creds $1)"
+function operate {
+  eval "$(vault-aws-creds $1 $2)"
 }
 
 alias vf=vault-forward
