@@ -117,4 +117,4 @@ brew 'awscli'
 brew 'terraform'
 brew 'cfssl'
 brew 'vault'
-
+brew 'aws-iam-authenticator'
