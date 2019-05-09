@@ -25,7 +25,7 @@ function vault_lease_renew {
   vault lease renew -increment 12h $1
 }
 
-function vault-aws-creds {
+function kubernetes-creds {
   local environment=${1}
   local role="${2:=operator}"
   vault read -format=json ${environment}/creds/kubernetes-${role} \
@@ -36,7 +36,7 @@ function vault-aws-creds {
 }
 
 function operate {
-  eval "$(vault-aws-creds $1 $2)"
+  eval "$(kubernetes-creds $1 $2)"
 }
 
 alias vf=vault-forward
