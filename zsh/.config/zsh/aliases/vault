@@ -3,18 +3,15 @@ function port-forward-vault {
 }
 
 function kill-port-forward-vault {
-  set +e
-
   echo "Killing Vault port-forwarding..."
   PID=$(ps aux | grep 'port-forward svc/vault' | grep -v 'grep' | awk '{print $2}')
 
   { kill $PID && wait $PID; } 2>/dev/null
-
-  set -e
 }
 
 function vault-login {
-  set +e
+  unset VAULT_ADDR
+
   local vault_token=${GITHUB_VAULT_TOKEN}
 
   vault_pid=$(ps aux | grep 'port-forward svc/vault' | grep -v 'grep' | awk '{print $2}')
@@ -32,7 +29,6 @@ function vault-login {
   done
 
   echo "Logged into Vault!"
-  set -e
 }
 
 function vault_lease_renew {
