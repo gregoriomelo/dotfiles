@@ -1,24 +1,38 @@
-function vault-forward {
-  kubectl port-forward service/vault 8200:8202 >/dev/null &
+function port-forward-vault {
+  kubectl port-forward svc/vault 8200:8202 > /dev/null 2>&1 &
+}
+
+function kill-port-forward-vault {
+  set +e
+
+  echo "Killing Vault port-forwarding..."
+  PID=$(ps aux | grep 'port-forward svc/vault' | grep -v 'grep' | awk '{print $2}')
+
+  { kill $PID && wait $PID; } 2>/dev/null
+
+  set -e
 }
 
 function vault-login {
-  vault_pid=$(ps aux | grep 'port-forward service/vault' | grep -v 'grep' | awk '{print $2}')
+  set +e
+  local vault_token=${GITHUB_VAULT_TOKEN}
+
+  vault_pid=$(ps aux | grep 'port-forward svc/vault' | grep -v 'grep' | awk '{print $2}')
 
   if [ -n vault_pid ]; then
-    vault-forward
+    echo "Port-forwarding Vault..."
+    port-forward-vault
   fi
 
-  vault login -method=github token=$GITHUB_VAULT_TOKEN
+  echo "Logging into Vault..."
+  VAULT_SKIP_VERIFY=true vault login -method=github token=${vault_token} >/dev/null 2>&1
 
   while [ $? != 0 ]; do
-    sleep 5
-    vault login -method=github token=$GITHUB_VAULT_TOKEN
+    VAULT_SKIP_VERIFY=true vault login -method=github token=${vault_token} >/dev/null 2>&1
   done
-}
 
-function kvf {
-  kill -9 $(ps aux | grep 'port-forward service/vault' | grep -v 'grep' | awk '{print $2}')
+  echo "Logged into Vault!"
+  set -e
 }
 
 function vault_lease_renew {
@@ -39,6 +53,7 @@ function operate {
   eval "$(kubernetes-creds $1 $2)"
 }
 
-alias vf=vault-forward
+alias kvf=kill-port-forward-vault
+alias vf=port-forward-vault
 alias vl=vault-login
 alias vr='vault read'
