@@ -13,6 +13,7 @@
 	lt = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	cl = clone
 	pr = pull --rebase
+	d = diff
 [color]
 	ui = true
 [core]
