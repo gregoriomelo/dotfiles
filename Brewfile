@@ -54,6 +54,10 @@ brew 'python3'
 brew 'rbenv'
 brew 'ruby-build'
 
+# go
+brew 'go'
+brew 'dep'
+
 # misc
 cask 'docker'
 cask 'vagrant'
