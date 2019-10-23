@@ -1,10 +1,18 @@
-alias kc="kubectl config get-contexts | grep '*' | awk '{print }'"
-alias ke="kubectl exec -it"
-alias kg="kubectl get"
-alias kd="kubectl describe"
-alias kgpi='kgp -n kube-ingress'
-alias kli='kl -n kube-ingress'
-alias kialis="kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=kiali -o jsonpath='{.items[0].metadata.name}') 20001:20001 > /dev/null 2>&1 &"
+function kc {
+  kubectl config get-contexts | grep '*' | awk '{print }'
+}
+
+function ke {
+  kubectl exec -it $@
+}
+
+function kg {
+  kubectl get $@
+}
+
+function kd {
+  kubectl describe $@
+}
 
 function kebash {
   ke $1 /bin/bash
