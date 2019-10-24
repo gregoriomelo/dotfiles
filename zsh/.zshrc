@@ -2,6 +2,9 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 plugins=(git brew pass kubectl)
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 source $ZSH/oh-my-zsh.sh
 
 source ~/.config/zsh/aliases/git
