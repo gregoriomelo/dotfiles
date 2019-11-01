@@ -2,7 +2,7 @@
 # tooling #
 ###########
 
-tap 'caskroom/cask'
+tap 'homebrew/cask'
 brew 'vim'
 brew 'zsh'
 brew 'zsh-completions'
@@ -63,7 +63,7 @@ cask 'docker'
 cask 'vagrant'
 cask 'virtualbox'
 brew 'reattach-to-user-namespace'
-brew "emacs", args: ["with-cocoa"]
+cask 'emacs'
 
 ############
 # browsers #
@@ -109,7 +109,7 @@ cask 'gog-galaxy'
 #########
 # fonts #
 #########
-tap 'caskroom/fonts'
+tap 'homebrew/cask-fonts'
 cask 'font-open-sans'
 
 #######
@@ -117,7 +117,7 @@ cask 'font-open-sans'
 #######
 
 brew 'kops'
-cask 'minikube'
+brew 'minikube'
 brew 'awscli'
 brew 'terraform'
 brew 'cfssl'
