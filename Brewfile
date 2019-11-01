@@ -32,6 +32,8 @@ mas 'XCode', id: 497799835
 
 # jvm
 cask 'java' unless system '/usr/libexec/java_home --failfast'
+tap 'homebrew/cask-versions'
+cask 'adoptopenjdk8'
 cask 'intellij-idea-ce'
 brew 'gradle'
 brew 'leiningen'
@@ -39,6 +41,7 @@ brew 'maven'
 
 # .net
 brew 'mono'
+brew 'azure-cli'
 cask 'visual-studio-code'
 cask 'visual-studio'
 tap 'samritchie/forge'
@@ -85,7 +88,9 @@ cask 'box-sync'
 
 cask 'calibre'
 cask 'skype'
+cask 'zoomus'
 cask 'spotify'
+cask 'deezer'
 cask 'xquartz'
 cask 'flux'
 cask 'authy'
