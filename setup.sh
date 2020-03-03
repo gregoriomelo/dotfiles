@@ -2,7 +2,7 @@
 
 set -e
 
-BASE_PATH=${1:-$HOME}
+BASE_PATH=${1:-$PWD}
 DOTFILES_HOME=${BASE_PATH}/dotfiles
 
 mkdir -p $BASE_PATH
