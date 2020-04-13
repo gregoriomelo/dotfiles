@@ -14,6 +14,10 @@ function kd {
   kubectl describe $@
 }
 
+function kpd {
+  kubectl patch deployment $@ -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+}
+
 function kebash {
   ke $1 /bin/bash
 }

@@ -12,6 +12,7 @@ brew 'stow'
 brew 'rg'
 brew 'jq'
 brew 'tig'
+brew 'watch'
 
 tap 'justwatchcom/gopass'
 brew 'gopass'
