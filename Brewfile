@@ -46,7 +46,6 @@ brew 'maven'
 brew 'mono'
 brew 'azure-cli'
 cask 'visual-studio-code'
-cask 'visual-studio'
 tap 'samritchie/forge'
 brew 'forge'
 
