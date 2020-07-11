@@ -17,6 +17,7 @@ source ~/.config/zsh/aliases/kubernetes
 source ~/.config/zsh/aliases/terraform
 source ~/.config/zsh/aliases/vault
 source ~/.config/zsh/aliases/aws
+source ~/.config/zsh/aliases/gaming
 
 for file in ~/.config/zsh/aliases/private/*
 do
