@@ -32,9 +32,11 @@ brew 'hugo'
 mas 'XCode', id: 497799835
 
 # jvm
-cask 'java' unless system '/usr/libexec/java_home --failfast'
-tap 'homebrew/cask-versions'
+tap 'AdoptOpenJDK/openjdk'
+
+cask 'adoptopenjdk' unless system '/usr/libexec/java_home --failfast'
 cask 'adoptopenjdk8'
+cask 'adoptopenjdk11'
 cask 'intellij-idea-ce'
 brew 'gradle'
 brew 'leiningen'
