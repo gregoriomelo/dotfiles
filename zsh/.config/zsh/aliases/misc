@@ -8,7 +8,7 @@ alias dev='cd $DEV_HOME'
 alias dotfiles='cd $DOTFILES_HOME'
 
 alias okta="gopass -c okta"
-alias p="gopass -c"
+alias p="gopass show -c"
 alias shadd="ssh-add ~/.ssh/github_rsa ~/.ssh/gitlab_rsa"
 
 function http_server {

@@ -35,19 +35,11 @@ mas 'XCode', id: 497799835
 tap 'AdoptOpenJDK/openjdk'
 
 cask 'adoptopenjdk' unless system '/usr/libexec/java_home --failfast'
-cask 'adoptopenjdk8'
 cask 'adoptopenjdk11'
 cask 'intellij-idea-ce'
 brew 'gradle'
 brew 'leiningen'
 brew 'maven'
-
-# .net
-brew 'mono'
-brew 'azure-cli'
-cask 'visual-studio-code'
-tap 'samritchie/forge'
-brew 'forge'
 
 # .node
 brew 'node'
@@ -103,7 +95,6 @@ mas 'Slack', id: 803453959
 mas 'Magnet', id: 441258766
 mas 'Pocket', id: 568494494
 mas 'Twitter', id: 409789998
-mas 'Evernote', id: 406056744
 mas 'The Unarchiver', id: 425424353
 
 ##########
