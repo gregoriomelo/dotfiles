@@ -11,4 +11,4 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:$HOME/.ghcup/bin
 export PATH=$PATH:$HOME/.ghcup/bin
 
-PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)%{$fg[yellow]%}$(__kube_ps1)%{$reset_color%} $ '
+PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)%{$reset_color%}$ '
