@@ -55,6 +55,9 @@ brew 'ruby-build'
 brew 'go'
 brew 'dep'
 
+# zepp
+brew 'tunnelblick'
+
 # misc
 cask 'docker'
 cask 'vagrant'
