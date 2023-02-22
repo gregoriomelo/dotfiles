@@ -35,11 +35,6 @@ mas 'XCode', id: 497799835
 tap 'AdoptOpenJDK/openjdk'
 
 cask 'adoptopenjdk' unless system '/usr/libexec/java_home --failfast'
-cask 'adoptopenjdk11'
-cask 'intellij-idea-ce'
-brew 'gradle'
-brew 'leiningen'
-brew 'maven'
 
 # .node
 brew 'node'
@@ -55,15 +50,10 @@ brew 'ruby-build'
 brew 'go'
 brew 'dep'
 
-# zepp
-brew 'tunnelblick'
-
 # misc
 cask 'docker'
 cask 'vagrant'
 cask 'virtualbox'
-brew 'reattach-to-user-namespace'
-cask 'emacs'
 
 ############
 # browsers #
@@ -91,10 +81,8 @@ cask 'flux'
 cask 'authy'
 cask 'discord'
 cask 'caffeine'
-mas 'Slack', id: 803453959
 mas 'Magnet', id: 441258766
 mas 'Pocket', id: 568494494
-mas 'Twitter', id: 409789998
 mas 'The Unarchiver', id: 425424353
 
 ##########
@@ -109,16 +97,3 @@ cask 'gog-galaxy'
 #########
 tap 'homebrew/cask-fonts'
 cask 'font-open-sans'
-
-#######
-# Ops #
-#######
-
-brew 'kops'
-brew 'minikube'
-brew 'awscli'
-brew 'terraform'
-brew 'cfssl'
-brew 'vault'
-brew 'aws-iam-authenticator'
-brew 'kubectx'
