@@ -1,6 +1,0 @@
-alias vup='vagrant up'
-alias vsh='vagrant ssh'
-alias vush='vup;vsh'
-alias vr='vagrant reload'
-alias vha='vagrant halt'
-alias vdu='vagrant destroy -f; vup'

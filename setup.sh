@@ -2,10 +2,7 @@
 
 set -e
 
-BASE_PATH=${1:-$PWD}
-DOTFILES_HOME=${BASE_PATH}/dotfiles
-
-mkdir -p $BASE_PATH
+DOTFILES_HOME=${PWD}
 
 echo "Getting my dotfiles and storing them at $DOTFILES_HOME"
 if [ ! -d "$DOTFILES_HOME" ]; then
@@ -17,12 +14,9 @@ fi
 cd $DOTFILES_HOME
 
 . scripts/checks.sh
-. scripts/maximum-awesome.sh
-. scripts/tmux.sh
+#. scripts/maximum-awesome.sh
 . scripts/brew.sh
-#sh scripts/oh-my-zsh.sh
+. scripts/oh-my-zsh.sh
 . scripts/gpg.sh
 . scripts/stow-all.sh
-. scripts/gopass.sh
 . scripts/system-preferences.sh
-. scripts/gitbook.sh

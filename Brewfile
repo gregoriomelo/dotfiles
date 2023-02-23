@@ -6,7 +6,6 @@ tap 'homebrew/cask'
 brew 'vim'
 brew 'zsh'
 brew 'zsh-completions'
-brew 'tmux'
 brew 'git'
 brew 'stow'
 brew 'rg'
@@ -14,15 +13,7 @@ brew 'jq'
 brew 'tig'
 brew 'watch'
 
-tap 'justwatchcom/gopass'
-brew 'gopass'
 brew 'pinentry-mac'
-
-############
-# blogging #
-############
-
-brew 'hugo'
 
 ###############
 # programming #
@@ -46,14 +37,8 @@ brew 'python3'
 brew 'rbenv'
 brew 'ruby-build'
 
-# go
-brew 'go'
-brew 'dep'
-
 # misc
 cask 'docker'
-cask 'vagrant'
-cask 'virtualbox'
 
 ############
 # browsers #
@@ -73,10 +58,9 @@ cask 'box-sync'
 # apps #
 ########
 
-cask 'calibre'
-cask 'zoomus'
+cask 'zoom'
+cask 'microsoft-teams'
 cask 'spotify'
-cask 'xquartz'
 cask 'flux'
 cask 'authy'
 cask 'discord'
@@ -90,7 +74,6 @@ mas 'The Unarchiver', id: 425424353
 ##########
 
 cask 'steam'
-cask 'gog-galaxy'
 
 #########
 # fonts #
