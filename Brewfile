@@ -38,7 +38,9 @@ brew 'rbenv'
 brew 'ruby-build'
 
 # misc
-cask 'docker'
+brew 'docker'
+brew 'docker-compose'
+brew 'colima'
 
 ############
 # browsers #
