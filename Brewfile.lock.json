@@ -1340,6 +1340,18 @@
         "options": {
           "full_name": "microsoft-teams"
         }
+      },
+      "cold-turkey-blocker": {
+        "version": "4.3",
+        "options": {
+          "full_name": "cold-turkey-blocker"
+        }
+      },
+      "meetingbar": {
+        "version": "4.2.1",
+        "options": {
+          "full_name": "meetingbar"
+        }
       }
     }
   },

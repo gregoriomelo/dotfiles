@@ -60,6 +60,8 @@ cask 'box-sync'
 # apps #
 ########
 
+cask 'cold-turkey-blocker'
+cask 'meetingbar'
 cask 'zoom'
 cask 'microsoft-teams'
 cask 'spotify'
