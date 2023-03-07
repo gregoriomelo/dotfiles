@@ -14,13 +14,6 @@ source ~/.config/zsh/aliases/misc
 source ~/.config/zsh/aliases/aws
 source ~/.config/zsh/aliases/gaming
 
-#for file in ~/.config/zsh/aliases/private/*
-#do
-#  if [[ -f $file ]]; then
-#    source $file
-#  fi
-#done
-
 source ~/.config/zsh/env
 source ~/.config/zsh/gnupg
 
