@@ -12,6 +12,7 @@ brew 'rg'
 brew 'jq'
 brew 'tig'
 brew 'watch'
+brew 'direnv'
 
 brew 'pinentry-mac'
 
