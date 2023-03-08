@@ -3,7 +3,7 @@
 set -e
 
 echo "Applying my personal set up with stow"
-PROGRAMS=(git zsh vim ruby starship)
+PROGRAMS=(git zsh vim ruby starship nix)
 STOW_DIR=~
 
 rm -f ~/.gitconfig
