@@ -19,6 +19,7 @@ source ~/.config/zsh/gnupg
 
 eval "$(rbenv init - zsh)"
 eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm

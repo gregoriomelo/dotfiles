@@ -13,6 +13,7 @@ brew 'jq'
 brew 'tig'
 brew 'watch'
 brew 'direnv'
+brew 'starship'
 
 brew 'pinentry-mac'
 
@@ -85,3 +86,5 @@ cask 'steam'
 #########
 tap 'homebrew/cask-fonts'
 cask 'font-open-sans'
+cask 'font-fira-mono-nerd-font'
+cask 'font-jetbrains-mono-nerd-font'
