@@ -14,6 +14,7 @@ brew 'tig'
 brew 'watch'
 brew 'direnv'
 brew 'starship'
+brew 'nushell'
 
 brew 'pinentry-mac'
 

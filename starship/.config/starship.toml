@@ -12,3 +12,8 @@ success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set
 [package]
 disabled = true
 
+[git_branch]
+symbol = " "
+
+[nix_shell]
+symbol = " "
