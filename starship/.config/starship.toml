@@ -17,3 +17,6 @@ symbol = " "
 
 [nix_shell]
 symbol = " "
+
+[sudo]
+disabled = false
