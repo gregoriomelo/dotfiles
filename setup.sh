@@ -14,7 +14,7 @@ fi
 cd $DOTFILES_HOME
 
 . scripts/checks.sh
-#. scripts/maximum-awesome.sh
+. scripts/maximum-awesome.sh
 . scripts/brew.sh
 . scripts/oh-my-zsh.sh
 . scripts/gpg.sh
