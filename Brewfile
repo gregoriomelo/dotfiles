@@ -15,6 +15,7 @@ brew 'watch'
 brew 'direnv'
 brew 'starship'
 brew 'nushell'
+brew 'fuzzy-find'
 
 brew 'pinentry-mac'
 
@@ -44,6 +45,7 @@ brew 'ruby-build'
 brew 'docker'
 brew 'docker-compose'
 brew 'colima'
+cask 'visual-studio-code'
 
 ############
 # browsers #
@@ -72,6 +74,7 @@ cask 'flux'
 cask 'authy'
 cask 'discord'
 cask 'caffeine'
+cask 'alfred'
 mas 'Magnet', id: 441258766
 mas 'Pocket', id: 568494494
 mas 'The Unarchiver', id: 425424353
@@ -89,3 +92,8 @@ tap 'homebrew/cask-fonts'
 cask 'font-open-sans'
 cask 'font-fira-mono-nerd-font'
 cask 'font-jetbrains-mono-nerd-font'
+
+#########
+# music #
+#########
+

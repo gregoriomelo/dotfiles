@@ -1,4 +1,4 @@
 fileignoreconfig:
 - filename: Brewfile.lock.json
-  checksum: 2f140f8d1c14daf94a46743bb66f4531ef665f44577b3a19610e7e8b6f069fc8
+  checksum: 91efcc81027c0bd12867506c30cee4eee772c726a4c7aa97f6c7abb9b59392bf
 version: ""
