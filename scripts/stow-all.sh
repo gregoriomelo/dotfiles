@@ -20,4 +20,9 @@ done
 echo "Stowing gnupg"
 stow -t $STOW_DIR/.gnupg gnupg
 
+# clojure
+echo "Stowing clojure"
+rm -f ~/.clojure/deps.edn
+stow -t $STOW_DIR/.clojure clojure
+
 echo "Done!"

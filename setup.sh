@@ -21,3 +21,4 @@ cd $DOTFILES_HOME
 . scripts/stow-all.sh
 . scripts/system-preferences.sh
 . scripts/talisman.sh
+. scripts/devbox.sh
