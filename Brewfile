@@ -27,9 +27,7 @@ brew 'pinentry-mac'
 mas 'XCode', id: 497799835
 
 # jvm
-tap 'AdoptOpenJDK/openjdk'
-
-cask 'adoptopenjdk' unless system '/usr/libexec/java_home --failfast'
+cask 'temurin' unless system '/usr/libexec/java_home --failfast'
 
 # .node
 brew 'node'

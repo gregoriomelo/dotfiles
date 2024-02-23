@@ -1,1 +1,1 @@
-alias brewup='brew update; brew upgrade; brew cleanup --prune=all'
+alias brewup='brew update; brew upgrade; brew upgrade `brew list --cask`; brew cleanup --prune=all'
