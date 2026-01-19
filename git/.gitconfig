@@ -1,7 +1,7 @@
 [user]
 	name = Gregório Melo
 	email = gregorio@gregoriomelo.com
-	signingkey = AA5C942FC9EC5C90
+	signingkey = 903877CBD0211C70A1A82843A37F13909665B893
 	gpgsign = true
 [alias]
 	st = status

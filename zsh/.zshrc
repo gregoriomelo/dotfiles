@@ -27,4 +27,23 @@ export NVM_DIR="$HOME/.nvm"
 
 # Add JBang to environment
 alias j!=jbang
-export PATH="$HOME/.jbang/bin:$PATH"
+export PATH="/opt/homebrew/bin/:/opt/homebrew/opt/python@3.13/libexec/bin:$HOME/.jbang/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# Added by Windsurf
+export PATH="/Users/gregoriomelo/.codeium/windsurf/bin:$PATH"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/gregoriomelo/.dart-cli-completion/zsh-config.zsh ]] && . /Users/gregoriomelo/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Added by Antigravity
+export PATH="/Users/gregoriomelo/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
