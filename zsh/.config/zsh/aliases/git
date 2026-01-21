@@ -1,5 +1,0 @@
-alias g='git'
-alias gpom='git push origin main'
-function gpb {
-  git push origin `git branch | grep \* | cut -d ' ' -f2`
-}

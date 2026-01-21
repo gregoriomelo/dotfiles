@@ -1,22 +1,22 @@
+tap 'anomalyco/tap'
+
 ###########
 # tooling #
 ###########
 
 brew 'vim'
-brew 'zsh'
-brew 'zsh-completions'
 brew 'git'
-brew 'stow'
 brew 'rg'
 brew 'jq'
-brew 'tig'
 brew 'watch'
 brew 'direnv'
-brew 'starship'
-brew 'nushell'
 brew 'fuzzy-find'
+brew 'gnupg'
 brew 'pinentry-mac'
 brew 'coreutils'
+cask 'ghostty'
+brew 'starship'
+brew 'nushell'
 
 ###############
 # programming #
@@ -27,7 +27,7 @@ mas 'XCode', id: 497799835
 
 # jvm
 cask 'temurin' unless system '/usr/libexec/java_home --failfast'
-cask 'temurin@21'
+cask 'temurin@25'
 
 # .node
 brew 'node'
@@ -39,14 +39,13 @@ brew 'python3'
 brew 'rbenv'
 brew 'ruby-build'
 
+# golang
 brew 'golang'
 
-# misc
+# docker
 brew 'docker'
 brew 'docker-compose'
 brew 'colima'
-cask 'visual-studio-code'
-cask 'ghostty'
 
 ############
 # browsers #
@@ -57,25 +56,17 @@ cask 'google-chrome'
 ###########
 # storage #
 ###########
-cask 'dropbox'
-cask 'box-sync'
 cask 'proton-drive'
 
 ########
 # apps #
 ########
-cask 'meetingbar'
-cask 'zoom'
-cask 'microsoft-teams'
 cask 'flux-app'
-cask 'authy'
 cask 'discord'
 cask 'caffeine'
 cask 'alfred'
 mas 'Magnet', id: 441258766
-mas 'Pocket', id: 568494494
 mas 'The Unarchiver', id: 425424353
-mas 'Proton Authenticator', id: 6741758667
 
 ##########
 # gaming #
@@ -100,3 +91,21 @@ cask 'proton-pass'
 cask 'protonvpn'
 cask 'proton-mail'
 
+###########
+# editors #
+###########
+cask 'visual-studio-code'
+cask 'antigravity'
+cask 'cursor'
+brew 'anomalyco/tap/opencode'
+
+######
+# ai #
+######
+cask 'claude'
+cask 'claude-code'
+
+##########
+# design #
+##########
+cask 'figma'
