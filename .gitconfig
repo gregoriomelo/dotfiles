@@ -1,0 +1,25 @@
+[user]
+	name = Gregório Melo
+	email = dev.github@gregoriomelo.com
+	signingkey = A37F13909665B893
+	gpgsign = true
+[alias]
+	st = status
+	s = status
+	ci = commit -S
+	co = checkout
+	br = branch
+	l = log --oneline
+	lt = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	cl = clone
+	pr = pull --rebase
+	d = diff
+[color]
+	ui = true
+[core]
+	editor = vim
+	excludesfile = ~/.config/git/global_ignore
+[merge]
+	tool = opendiff
+[init]
+	defaultBranch = main
