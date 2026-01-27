@@ -97,13 +97,15 @@ cask 'proton-mail'
 cask 'visual-studio-code'
 cask 'antigravity'
 cask 'cursor'
-brew 'anomalyco/tap/opencode'
 
 ######
 # ai #
 ######
 cask 'claude'
+
 cask 'claude-code'
+brew 'anomalyco/tap/opencode'
+cask 'cursor-cli'
 
 ##########
 # design #
