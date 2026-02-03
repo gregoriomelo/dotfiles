@@ -102,17 +102,20 @@ cask 'cursor'
 # ai #
 ######
 cask 'claude'
-cask 'goose'
-brew 'goose'
+cask 'block-goose'
+brew 'block-goose-cli'
 cask 'claude-code'
 brew 'anomalyco/tap/opencode'
 cask 'cursor-cli'
-brew 'kilocode'
-cask 'kilocode'
 cask 'kiro'
-brew 'kiro'
+cask 'kiro-cli'
 
 ##########
 # design #
 ##########
 cask 'figma'
+
+#######
+# dev #
+#######
+cask 'gh'
