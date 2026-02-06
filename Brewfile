@@ -42,6 +42,11 @@ brew 'ruby-build'
 # golang
 brew 'golang'
 
+# apple dev
+brew 'xcode-build-server'
+brew 'xcbeautify'
+brew 'swiftformat'
+
 # docker
 brew 'docker'
 brew 'docker-compose'
