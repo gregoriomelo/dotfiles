@@ -123,4 +123,4 @@ cask 'figma'
 #######
 # dev #
 #######
-cask 'gh'
+brew 'gh'
