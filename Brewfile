@@ -17,6 +17,7 @@ brew 'coreutils'
 cask 'ghostty'
 brew 'starship'
 brew 'nushell'
+brew 'tmux'
 
 ###############
 # programming #
