@@ -29,6 +29,8 @@ dotfiles/
 ├── .gitignore                  # Excludes .DS_Store, .claude/
 ├── scripts/
 │   └── macos-defaults.sh       # macOS system preferences
+├── aliases/                    # Stow package
+│   └── .aliases                # Shell aliases and helper functions
 ├── zsh/                        # Stow package
 │   ├── .zshrc
 │   └── .zprofile               # Sets Homebrew shell env
@@ -57,6 +59,7 @@ dotfiles/
 After `make stow`, all of these point to `~/dev/dotfiles`:
 
 ```
+~/.aliases                    → aliases/.aliases
 ~/.zshrc                      → zsh/.zshrc
 ~/.zprofile                   → zsh/.zprofile
 ~/.gitconfig                  → git/.gitconfig
@@ -127,7 +130,7 @@ Check everything is set up correctly:
 
 ```bash
 # All symlinks should point to ~/dev/dotfiles
-ls -la ~/.zshrc ~/.zprofile ~/.gitconfig ~/.tmux.conf ~/.config/git/global_ignore
+ls -la ~/.aliases ~/.zshrc ~/.zprofile ~/.gitconfig ~/.tmux.conf ~/.config/git/global_ignore
 
 # Homebrew should be accessible
 zsh -l -c 'which brew'
@@ -146,5 +149,7 @@ defaults read NSGlobalDomain KeyRepeat  # should be 2
 - **scripts/macos-defaults.sh** — System preferences configuration
 - **docs/tmux.md** — Full tmux keybinding and plugin reference
 - **docs/tasks/** — Task summaries with context and prompts used
+  - [2026-02-18: Aliases Consolidation](docs/tasks/2026-02-18-aliases-consolidation.md)
+  - [2026-02-18: Tmux Config](docs/tasks/2026-02-18-tmux-config.md)
 
 See also: `.claude/CLAUDE.md` for global dotfiles instructions.

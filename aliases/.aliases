@@ -1,0 +1,33 @@
+alias ls="ls -l -G"
+alias h="history"
+alias hg="history | grep"
+
+alias v='vim'
+
+alias dev='cd $DEV_HOME'
+alias dotfiles='cd $DOTFILES_HOME'
+
+function http_server {
+  python -m SimpleHTTPServer $1 > /dev/null 2>&1
+}
+
+# git
+alias g='git'
+alias gpom='git push origin main'
+function gpb {
+  git push origin `git branch | grep \* | cut -d ' ' -f2`
+}
+
+# docker
+alias dcu='docker-compose up'
+alias dcud='docker-compose up -d'
+alias dcr='docker-compose run'
+alias dcb='docker-compose build'
+alias dcs='docker-compose stop'
+alias dce='docker-compose exec'
+alias dccu='docker-compose stop; docker-compose rm --force; docker-compose up -d'
+alias dcrw='docker-compose run web'
+alias dcrwb='dcrw bundle'
+
+# brew
+alias brewup='brew update; brew upgrade; brew cleanup --prune=all'
