@@ -1,4 +1,6 @@
-.PHONY: setup homebrew brew stow tpm macos nushell-init default-shell
+STOW_PACKAGES := aliases zsh git tmux glow nushell claude
+
+.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos nushell-init default-shell
 
 setup: homebrew brew stow tpm macos
 	@echo "✓ Bootstrap complete"
@@ -15,9 +17,21 @@ brew: homebrew
 	@echo "Installing packages from Brewfile..."
 	brew bundle --file=Brewfile
 
-stow: brew
+clean-stow-conflicts:
+	@echo "Removing conflicting files in $$HOME..."
+	@for pkg in $(STOW_PACKAGES); do \
+		find $$pkg -type f | while read f; do \
+			target="$$HOME/$${f#$$pkg/}"; \
+			if [ -e "$$target" ] || [ -L "$$target" ]; then \
+				echo "  removing $$target"; \
+				rm -f "$$target"; \
+			fi; \
+		done; \
+	done
+
+stow: brew clean-stow-conflicts
 	@echo "Symlinking dotfiles..."
-	stow --verbose --dir=. --target=$$HOME aliases zsh git tmux glow nushell claude
+	stow --verbose --dir=. --target=$$HOME $(STOW_PACKAGES)
 	@echo "✓ Dotfiles symlinked"
 
 tpm:
