@@ -26,7 +26,7 @@ This single command:
 dotfiles/
 ├── Makefile                    # Entry point; run `make setup`
 ├── Brewfile                    # Homebrew packages (not stowed)
-├── .gitignore                  # Excludes .DS_Store, .claude/
+├── .gitignore                  # Excludes .DS_Store, repo-root .claude/
 ├── scripts/
 │   └── macos-defaults.sh       # macOS system preferences
 ├── aliases/                    # Stow package
@@ -43,10 +43,20 @@ dotfiles/
 │   └── .tmux.conf
 ├── glow/                       # Stow package
 │   └── .config/glow/glow.yml
-└── nushell/                    # Stow package
-    └── .config/nushell/
-        ├── env.nu              # PATH, Homebrew env, DEV_HOME, DOTFILES_HOME
-        └── config.nu           # Starship + direnv hook; sources aliases.nu
+├── nushell/                    # Stow package
+│   └── .config/nushell/
+│       ├── env.nu              # PATH, Homebrew env, DEV_HOME, DOTFILES_HOME
+│       └── config.nu           # Starship + direnv hook; sources aliases.nu
+└── claude/                     # Stow package
+    └── .claude/
+        ├── CLAUDE.md           # Global instructions (references rules/)
+        ├── settings.json       # Model and other preferences
+        └── rules/              # Instruction modules
+            ├── git.md
+            ├── docs.md
+            ├── testing.md
+            ├── coding.md
+            └── product.md
 ```
 
 ## Make Targets
@@ -77,6 +87,9 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ~/.config/glow/glow.yml             → glow/.config/glow/glow.yml
 ~/.config/nushell/env.nu            → nushell/.config/nushell/env.nu
 ~/.config/nushell/config.nu         → nushell/.config/nushell/config.nu
+~/.claude/CLAUDE.md                 → claude/.claude/CLAUDE.md
+~/.claude/settings.json             → claude/.claude/settings.json
+~/.claude/rules/                    → claude/.claude/rules/
 ```
 
 ## macOS Defaults
@@ -155,6 +168,17 @@ aliases/
 
 When adding or changing an alias, edit **both files**. See [docs/nushell.md](docs/nushell.md) for syntax reference.
 
+## Claude Code
+
+The `claude/` stow package manages only user-authored Claude Code configuration files. The `~/.claude/` directory also contains Claude-managed state (history, credentials, projects, etc.) which is **not** version-controlled.
+
+**Managed files:**
+- `CLAUDE.md` — Global instructions that reference modular rules
+- `settings.json` — Model and other preferences
+- `rules/*.md` — Modular instruction files (git, docs, testing, coding, product)
+
+Stow creates individual symlinks inside `~/.claude/` (tree unfolding) so Claude-managed files coexist alongside the symlinked config.
+
 ## Adding New Dotfiles
 
 1. Create a new stow package (e.g., `nvim/`)
@@ -205,5 +229,6 @@ dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
   - [2026-02-18: Aliases Consolidation](docs/tasks/2026-02-18-aliases-consolidation.md)
   - [2026-02-18: Tmux Config](docs/tasks/2026-02-18-tmux-config.md)
   - [2026-02-18: Nushell Default Shell](docs/tasks/2026-02-18-nushell-default-shell.md)
+  - [2026-02-18: Claude Code Config](docs/tasks/2026-02-18-claude-code-config.md)
 
-See also: `.claude/CLAUDE.md` for global dotfiles instructions.
+See also: `claude/.claude/CLAUDE.md` for global Claude Code instructions.

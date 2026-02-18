@@ -17,7 +17,7 @@ brew: homebrew
 
 stow: brew
 	@echo "Symlinking dotfiles..."
-	stow --verbose --dir=. --target=$$HOME aliases zsh git tmux glow nushell
+	stow --verbose --dir=. --target=$$HOME aliases zsh git tmux glow nushell claude
 	@echo "✓ Dotfiles symlinked"
 
 tpm:
