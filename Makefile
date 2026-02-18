@@ -21,7 +21,23 @@ clean-stow-conflicts:
 	@echo "Removing conflicting files in $$HOME..."
 	@for pkg in $(STOW_PACKAGES); do \
 		find $$pkg -type f | while read f; do \
-			target="$$HOME/$${f#$$pkg/}"; \
+			rel="$${f#$$pkg/}"; \
+			target="$$HOME/$$rel"; \
+			if [ -L "$$target" ] && readlink "$$target" | grep -q "dev/dotfiles"; then \
+				continue; \
+			fi; \
+			dir="$$HOME"; \
+			skip=false; \
+			for part in $$(echo "$$rel" | tr '/' ' '); do \
+				dir="$$dir/$$part"; \
+				if [ -L "$$dir" ] && readlink "$$dir" | grep -q "dev/dotfiles"; then \
+					skip=true; \
+					break; \
+				fi; \
+			done; \
+			if [ "$$skip" = true ]; then \
+				continue; \
+			fi; \
 			if [ -e "$$target" ] || [ -L "$$target" ]; then \
 				echo "  removing $$target"; \
 				rm -f "$$target"; \
