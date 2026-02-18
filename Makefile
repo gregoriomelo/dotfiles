@@ -1,6 +1,6 @@
-STOW_PACKAGES := aliases zsh git tmux glow nushell claude
+STOW_PACKAGES := aliases zsh git tmux glow nushell claude ghostty
 
-.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos nushell-init default-shell
+.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos nushell-init ghostty-init default-shell
 
 setup: homebrew brew stow tpm macos
 	@echo "✓ Bootstrap complete"
@@ -69,6 +69,14 @@ nushell-init:
 	    ln -sf "$$HOME/.config/nushell/config.nu" "$$NUDIR/config.nu"; \
 	    ln -sf "$$HOME/.config/nushell/env.nu" "$$NUDIR/env.nu"
 	@echo "✓ Nushell macOS config dir linked"
+
+ghostty-init:
+	@echo "Linking macOS Ghostty config to stow-managed ~/.config/ghostty..."
+	@GDIR="$$HOME/Library/Application Support/com.mitchellh.ghostty"; \
+	    mkdir -p "$$GDIR"; \
+	    rm -f "$$GDIR/config"; \
+	    ln -sf "$$HOME/.config/ghostty/config" "$$GDIR/config"
+	@echo "✓ Ghostty macOS config linked"
 
 default-shell:
 	@echo "Registering nushell in /etc/shells and setting as default..."
