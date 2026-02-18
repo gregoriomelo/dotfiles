@@ -19,6 +19,7 @@ cask 'ghostty'
 brew 'starship'
 brew 'nushell'
 brew 'tmux'
+brew 'glow'
 
 ###############
 # programming #

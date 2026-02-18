@@ -1,0 +1,24 @@
+# Glow markdown viewer configuration
+# Reference: https://github.com/charmbracelet/glow
+
+# Color scheme: "auto" detects terminal theme (light/dark)
+# Other options: "dark", "light", or path to custom JSON stylesheet
+style: auto
+
+# Enable mouse wheel support in TUI mode
+mouse: true
+
+# Use a pager when displaying markdown
+pager: true
+
+# Maximum column width for text wrapping (0 = auto)
+width: 80
+
+# Show hidden and ignored files
+all: false
+
+# Display line numbers in TUI mode
+showLineNumbers: false
+
+# Retain newline characters in output
+preserveNewLines: false

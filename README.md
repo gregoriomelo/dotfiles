@@ -35,8 +35,10 @@ dotfiles/
 ├── git/                        # Stow package
 │   ├── .gitconfig
 │   └── .config/git/global_ignore
-└── tmux/                       # Stow package
-    └── .tmux.conf
+├── tmux/                       # Stow package
+│   └── .tmux.conf
+└── glow/                       # Stow package
+    └── .config/glow/glow.yml
 ```
 
 ## Make Targets
@@ -60,6 +62,7 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ~/.gitconfig                  → git/.gitconfig
 ~/.config/git/global_ignore   → git/.config/git/global_ignore
 ~/.tmux.conf                  → tmux/.tmux.conf
+~/.config/glow/glow.yml       → glow/.config/glow/glow.yml
 ```
 
 ## macOS Defaults
@@ -115,7 +118,7 @@ defaults read NSGlobalDomain KeyRepeat  # should be 2
 
 ## Documentation
 
-- **BOOTSTRAP.md** (this file) — Setup and usage
+- **README.md** (this file) — Setup and usage
 - **Makefile** — Automation targets
 - **scripts/macos-defaults.sh** — System preferences configuration
 
