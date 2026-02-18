@@ -47,7 +47,7 @@ dotfiles/
 - **`make homebrew`** — Installs Homebrew if missing (idempotent)
 - **`make brew`** — Runs `brew bundle --file=Brewfile` (requires homebrew)
 - **`make stow`** — Symlinks packages using GNU Stow (requires stow from brew)
-- **`make tpm`** — Clones TPM if not present (idempotent)
+- **`make tpm`** — Clones TPM + catppuccin/tmux, then installs all plugins (idempotent)
 - **`make macos`** — Applies macOS defaults and restarts Dock/Finder
 
 **All targets are idempotent** — safe to run multiple times.
@@ -91,6 +91,29 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 - Expanded save/print panels
 - Disabled quarantine dialog
 
+## Tmux Configuration
+
+See [tmux/.tmux.conf](tmux/.tmux.conf) for full details. See also [docs/tmux.md](docs/tmux.md).
+
+**Prefix:** `Ctrl+a`
+
+| Action | Key |
+|---|---|
+| Reload config | `prefix + r` |
+| Split horizontal | `prefix + \|` |
+| Split vertical | `prefix + -` |
+| Navigate panes | `prefix + h/j/k/l` |
+| Resize panes | `prefix + H/J/K/L` |
+| Zoom pane | `prefix + m` |
+| Previous/next window | `Alt+H` / `Alt+L` |
+| Enter copy mode | `prefix + Enter` |
+| Copy mode select | `v`, block: `Ctrl+v` |
+| Copy selection | `y` |
+
+**Plugins:** tmux-sensible, tmux-yank, tmux-resurrect, tmux-continuum, catppuccin/tmux (Mocha)
+
+**Status bar:** Session name (left) — turns red when prefix is active. Directory + date/time (right).
+
 ## Adding New Dotfiles
 
 1. Create a new stow package (e.g., `nvim/`)
@@ -121,5 +144,7 @@ defaults read NSGlobalDomain KeyRepeat  # should be 2
 - **README.md** (this file) — Setup and usage
 - **Makefile** — Automation targets
 - **scripts/macos-defaults.sh** — System preferences configuration
+- **docs/tmux.md** — Full tmux keybinding and plugin reference
+- **docs/tasks/** — Task summaries with context and prompts used
 
 See also: `.claude/CLAUDE.md` for global dotfiles instructions.

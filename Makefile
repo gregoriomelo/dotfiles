@@ -28,6 +28,15 @@ tpm:
 	else \
 		echo "✓ TPM already installed"; \
 	fi
+	@if [ ! -d "$$HOME/.tmux/plugins/tmux" ]; then \
+		echo "Cloning catppuccin/tmux..."; \
+		git clone https://github.com/catppuccin/tmux $$HOME/.tmux/plugins/tmux; \
+	else \
+		echo "✓ catppuccin/tmux already installed"; \
+	fi
+	@echo "Installing TPM plugins..."
+	@$$HOME/.tmux/plugins/tpm/bin/install_plugins || true
+	@echo "✓ TPM plugins installed"
 
 macos:
 	@echo "Applying macOS defaults..."
