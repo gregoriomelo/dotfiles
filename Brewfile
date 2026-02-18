@@ -4,6 +4,7 @@ tap 'anomalyco/tap'
 # tooling #
 ###########
 
+brew 'stow'
 brew 'vim'
 brew 'git'
 brew 'rg'
@@ -125,3 +126,4 @@ cask 'figma'
 # dev #
 #######
 brew 'gh'
+brew 'tailscale'
