@@ -1,4 +1,4 @@
-.PHONY: setup homebrew brew stow tpm macos
+.PHONY: setup homebrew brew stow tpm macos nushell-init default-shell
 
 setup: homebrew brew stow tpm macos
 	@echo "✓ Bootstrap complete"
@@ -17,7 +17,7 @@ brew: homebrew
 
 stow: brew
 	@echo "Symlinking dotfiles..."
-	stow --verbose --dir=. --target=$$HOME aliases zsh git tmux glow
+	stow --verbose --dir=. --target=$$HOME aliases zsh git tmux glow nushell
 	@echo "✓ Dotfiles symlinked"
 
 tpm:
@@ -43,3 +43,23 @@ macos:
 	@bash scripts/macos-defaults.sh
 	@killall Dock Finder &> /dev/null || true
 	@echo "✓ macOS defaults applied"
+
+nushell-init:
+	@echo "Generating starship cache for nushell..."
+	@mkdir -p $$HOME/.cache/starship
+	starship init nu > $$HOME/.cache/starship/init.nu
+	@echo "✓ Starship nushell cache written"
+	@echo "Linking macOS nushell config dir to stow-managed ~/.config/nushell..."
+	@NUDIR="$$HOME/Library/Application Support/nushell"; \
+	    rm -f "$$NUDIR/config.nu" "$$NUDIR/env.nu"; \
+	    ln -sf "$$HOME/.config/nushell/config.nu" "$$NUDIR/config.nu"; \
+	    ln -sf "$$HOME/.config/nushell/env.nu" "$$NUDIR/env.nu"
+	@echo "✓ Nushell macOS config dir linked"
+
+default-shell:
+	@echo "Registering nushell in /etc/shells and setting as default..."
+	@if ! grep -q "/opt/homebrew/bin/nu" /etc/shells; then \
+		echo "/opt/homebrew/bin/nu" | sudo tee -a /etc/shells; \
+	fi
+	chsh -s /opt/homebrew/bin/nu
+	@echo "✓ Default shell set to nushell. Restart your terminal."

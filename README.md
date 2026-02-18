@@ -30,17 +30,23 @@ dotfiles/
 ├── scripts/
 │   └── macos-defaults.sh       # macOS system preferences
 ├── aliases/                    # Stow package
-│   └── .aliases                # Shell aliases and helper functions
+│   ├── .aliases                # Shell aliases (zsh format)
+│   └── .config/nushell/
+│       └── aliases.nu          # Shell aliases (nushell format)
 ├── zsh/                        # Stow package
 │   ├── .zshrc
-│   └── .zprofile               # Sets Homebrew shell env
+│   └── .zprofile               # Sets Homebrew shell env + DEV_HOME/DOTFILES_HOME
 ├── git/                        # Stow package
 │   ├── .gitconfig
 │   └── .config/git/global_ignore
 ├── tmux/                       # Stow package
 │   └── .tmux.conf
-└── glow/                       # Stow package
-    └── .config/glow/glow.yml
+├── glow/                       # Stow package
+│   └── .config/glow/glow.yml
+└── nushell/                    # Stow package
+    └── .config/nushell/
+        ├── env.nu              # PATH, Homebrew env, DEV_HOME, DOTFILES_HOME
+        └── config.nu           # Starship + direnv hook; sources aliases.nu
 ```
 
 ## Make Targets
@@ -51,6 +57,8 @@ dotfiles/
 - **`make stow`** — Symlinks packages using GNU Stow (requires stow from brew)
 - **`make tpm`** — Clones TPM + catppuccin/tmux, then installs all plugins (idempotent)
 - **`make macos`** — Applies macOS defaults and restarts Dock/Finder
+- **`make nushell-init`** — Generates `~/.cache/starship/init.nu` (one-time, run after `make stow`)
+- **`make default-shell`** — Registers nushell in `/etc/shells` and sets it as the login shell (requires sudo)
 
 **All targets are idempotent** — safe to run multiple times.
 
@@ -59,13 +67,16 @@ dotfiles/
 After `make stow`, all of these point to `~/dev/dotfiles`:
 
 ```
-~/.aliases                    → aliases/.aliases
-~/.zshrc                      → zsh/.zshrc
-~/.zprofile                   → zsh/.zprofile
-~/.gitconfig                  → git/.gitconfig
-~/.config/git/global_ignore   → git/.config/git/global_ignore
-~/.tmux.conf                  → tmux/.tmux.conf
-~/.config/glow/glow.yml       → glow/.config/glow/glow.yml
+~/.aliases                          → aliases/.aliases
+~/.config/nushell/aliases.nu        → aliases/.config/nushell/aliases.nu
+~/.zshrc                            → zsh/.zshrc
+~/.zprofile                         → zsh/.zprofile
+~/.gitconfig                        → git/.gitconfig
+~/.config/git/global_ignore         → git/.config/git/global_ignore
+~/.tmux.conf                        → tmux/.tmux.conf
+~/.config/glow/glow.yml             → glow/.config/glow/glow.yml
+~/.config/nushell/env.nu            → nushell/.config/nushell/env.nu
+~/.config/nushell/config.nu         → nushell/.config/nushell/config.nu
 ```
 
 ## macOS Defaults
@@ -117,6 +128,33 @@ See [tmux/.tmux.conf](tmux/.tmux.conf) for full details. See also [docs/tmux.md]
 
 **Status bar:** Session name (left) — turns red when prefix is active. Directory + date/time (right).
 
+## Nushell
+
+Nushell is the default interactive shell. It is **not POSIX-compatible** — it has its own language (Nu) with different syntax for aliases and functions.
+
+### First-time setup
+
+After `make stow`, run these two additional steps:
+
+```bash
+make nushell-init    # generates ~/.cache/starship/init.nu
+make default-shell   # registers nu in /etc/shells + chsh (requires sudo)
+```
+
+Then restart your terminal.
+
+### Co-location convention for aliases
+
+Aliases live **side-by-side** in the `aliases/` stow package:
+
+```
+aliases/
+├── .aliases                        ← zsh format
+└── .config/nushell/aliases.nu      ← nushell format
+```
+
+When adding or changing an alias, edit **both files**. See [docs/nushell.md](docs/nushell.md) for syntax reference.
+
 ## Adding New Dotfiles
 
 1. Create a new stow package (e.g., `nvim/`)
@@ -140,6 +178,20 @@ ls ~/.tmux/plugins/tpm
 
 # macOS defaults applied
 defaults read NSGlobalDomain KeyRepeat  # should be 2
+
+# Nushell symlinks exist
+ls -la ~/.config/nushell/
+
+# Starship cache generated
+ls ~/.cache/starship/init.nu
+
+# Nushell basics work
+nu -c "g --version"
+nu -c "$env.DEV_HOME"
+nu -c "$env.PATH | str join (char nl)" | grep homebrew
+
+# Default shell changed (after make default-shell + terminal restart)
+dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
 ```
 
 ## Documentation
@@ -148,8 +200,10 @@ defaults read NSGlobalDomain KeyRepeat  # should be 2
 - **Makefile** — Automation targets
 - **scripts/macos-defaults.sh** — System preferences configuration
 - **docs/tmux.md** — Full tmux keybinding and plugin reference
+- **docs/nushell.md** — Nushell setup, alias syntax reference, and co-location convention
 - **docs/tasks/** — Task summaries with context and prompts used
   - [2026-02-18: Aliases Consolidation](docs/tasks/2026-02-18-aliases-consolidation.md)
   - [2026-02-18: Tmux Config](docs/tasks/2026-02-18-tmux-config.md)
+  - [2026-02-18: Nushell Default Shell](docs/tasks/2026-02-18-nushell-default-shell.md)
 
 See also: `.claude/CLAUDE.md` for global dotfiles instructions.
