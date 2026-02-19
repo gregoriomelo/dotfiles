@@ -10,9 +10,8 @@ Version-control user-authored Claude Code configuration via GNU Stow, keeping it
 
 1. **Fixed `.gitignore`** — Changed `.claude/` to `/.claude/` so only the repo-root local project config is ignored, not the `claude/.claude/` stow package.
 
-2. **Created `claude/` stow package** with 8 files:
+2. **Created `claude/` stow package** with 7 files:
    - `.claude/CLAUDE.md` — Global instructions referencing modular rules
-   - `.claude/settings.json` — Model and status line config
    - `.claude/statusline-command.sh` — Custom status line script
    - `.claude/rules/` — 5 instruction modules (git, docs, testing, coding, product)
 
@@ -32,17 +31,20 @@ Stow uses **tree unfolding** for the `claude` package: since `~/.claude/` alread
 - `Makefile`
 - `README.md`
 - `claude/.claude/CLAUDE.md` (new)
-- `claude/.claude/settings.json` (new)
 - `claude/.claude/statusline-command.sh` (new)
 - `claude/.claude/rules/*.md` (new, 5 files)
 
 ## Verification
 
 ```bash
-ls -la ~/.claude/CLAUDE.md ~/.claude/settings.json ~/.claude/statusline-command.sh ~/.claude/rules/
+ls -la ~/.claude/CLAUDE.md ~/.claude/statusline-command.sh ~/.claude/rules/
 ```
 
 All symlinks point to `~/dev/dotfiles/claude/.claude/`.
+
+## Note
+
+`claude/.claude/settings.json` was later removed from version control (untracked + gitignored) as it contains Claude-managed preferences that vary per machine.
 
 ## Related Docs
 

@@ -50,7 +50,6 @@ dotfiles/
 └── claude/                     # Stow package
     └── .claude/
         ├── CLAUDE.md           # Global instructions (references rules/)
-        ├── settings.json       # Model and other preferences
         └── rules/              # Instruction modules
             ├── git.md
             ├── docs.md
@@ -88,7 +87,6 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ~/.config/nushell/env.nu            → nushell/.config/nushell/env.nu
 ~/.config/nushell/config.nu         → nushell/.config/nushell/config.nu
 ~/.claude/CLAUDE.md                 → claude/.claude/CLAUDE.md
-~/.claude/settings.json             → claude/.claude/settings.json
 ~/.claude/rules/                    → claude/.claude/rules/
 ```
 
@@ -174,7 +172,6 @@ The `claude/` stow package manages only user-authored Claude Code configuration 
 
 **Managed files:**
 - `CLAUDE.md` — Global instructions that reference modular rules
-- `settings.json` — Model and other preferences
 - `rules/*.md` — Modular instruction files (git, docs, testing, coding, product)
 
 Stow creates individual symlinks inside `~/.claude/` (tree unfolding) so Claude-managed files coexist alongside the symlinked config.
