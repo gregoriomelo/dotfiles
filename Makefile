@@ -2,7 +2,7 @@ STOW_PACKAGES := aliases zsh git tmux glow nushell claude ghostty
 
 .PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos nushell-init ghostty-init default-shell
 
-setup: homebrew brew stow tpm macos
+setup: homebrew brew stow tpm macos nushell-init ghostty-init
 	@echo "✓ Bootstrap complete"
 
 homebrew:
@@ -74,7 +74,7 @@ macos:
 	@killall Dock Finder &> /dev/null || true
 	@echo "✓ macOS defaults applied"
 
-nushell-init:
+nushell-init: stow
 	@echo "Generating starship cache for nushell..."
 	@mkdir -p $$HOME/.cache/starship
 	starship init nu > $$HOME/.cache/starship/init.nu
@@ -86,7 +86,7 @@ nushell-init:
 	    ln -sf "$$HOME/.config/nushell/env.nu" "$$NUDIR/env.nu"
 	@echo "✓ Nushell macOS config dir linked"
 
-ghostty-init:
+ghostty-init: stow
 	@echo "Linking macOS Ghostty config to stow-managed ~/.config/ghostty..."
 	@GDIR="$$HOME/Library/Application Support/com.mitchellh.ghostty"; \
 	    mkdir -p "$$GDIR"; \
