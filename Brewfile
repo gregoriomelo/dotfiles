@@ -1,9 +1,6 @@
-tap 'anomalyco/tap'
-
 ###########
 # tooling #
 ###########
-
 brew 'stow'
 brew 'vim'
 brew 'git'
@@ -98,6 +95,8 @@ cask 'font-jetbrains-mono-nerd-font'
 cask 'proton-pass'
 cask 'protonvpn'
 cask 'proton-mail'
+tap 'protonpass/tap'
+brew 'protonpass/tap/pass-cli'
 
 ###########
 # editors #
@@ -113,6 +112,7 @@ cask 'claude'
 cask 'block-goose'
 brew 'block-goose-cli'
 cask 'claude-code'
+tap 'anomalyco/tap'
 brew 'anomalyco/tap/opencode'
 cask 'cursor-cli'
 cask 'kiro'
