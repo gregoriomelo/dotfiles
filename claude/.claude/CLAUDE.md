@@ -12,3 +12,6 @@
 
 # product management
 - @rules/product.md
+
+# design
+- @rules/design.md
