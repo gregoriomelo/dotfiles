@@ -47,6 +47,8 @@ dotfiles/
 │   └── .config/nushell/
 │       ├── env.nu              # PATH, Homebrew env, DEV_HOME, DOTFILES_HOME
 │       └── config.nu           # Starship + direnv hook; sources aliases.nu
+├── starship/                   # Stow package
+│   └── .config/starship.toml   # Prompt theme: hostname, directory, git, languages
 └── claude/                     # Stow package
     └── .claude/
         ├── CLAUDE.md           # Global instructions (references rules/)
@@ -88,6 +90,7 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ~/.config/nushell/config.nu         → nushell/.config/nushell/config.nu
 ~/.claude/CLAUDE.md                 → claude/.claude/CLAUDE.md
 ~/.claude/rules/                    → claude/.claude/rules/
+~/.config/starship.toml             → starship/.config/starship.toml
 ```
 
 ## macOS Defaults
@@ -222,10 +225,12 @@ dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
 - **scripts/macos-defaults.sh** — System preferences configuration
 - **docs/tmux.md** — Full tmux keybinding and plugin reference
 - **docs/nushell.md** — Nushell setup, alias syntax reference, and co-location convention
+- **docs/starship.md** — Starship prompt configuration reference
 - **docs/tasks/** — Task summaries with context and prompts used
   - [2026-02-18: Aliases Consolidation](docs/tasks/2026-02-18-aliases-consolidation.md)
   - [2026-02-18: Tmux Config](docs/tasks/2026-02-18-tmux-config.md)
   - [2026-02-18: Nushell Default Shell](docs/tasks/2026-02-18-nushell-default-shell.md)
   - [2026-02-18: Claude Code Config](docs/tasks/2026-02-18-claude-code-config.md)
+  - [2026-02-22: Starship Config](docs/tasks/2026-02-22-starship-config.md)
 
 See also: `claude/.claude/CLAUDE.md` for global Claude Code instructions.
