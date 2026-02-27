@@ -31,3 +31,7 @@ alias dcrwb='dcrw bundle'
 
 # brew
 alias brewup='brew update; brew upgrade; brew cleanup --prune=all'
+
+# tmux
+alias t=tmux
+alias ta='tmux attach -t'
