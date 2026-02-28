@@ -50,3 +50,7 @@ def brewup [] {
 def http_server [port?: int] {
     python -m SimpleHTTPServer $port
 }
+
+# tmux
+alias t = tmux
+alias ta = tmux attach -t
