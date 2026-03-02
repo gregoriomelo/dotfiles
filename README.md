@@ -65,6 +65,8 @@ dotfiles/
     └── .gemini/
         ├── GEMINI.md           # References symlinked rules/
         └── rules               → ../../ai/rules
+├── vim/                        # Stow package
+│   └── .vimrc                  # 2-space indentation
 ```
 
 ## Make Targets
@@ -99,6 +101,7 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ~/.claude/rules/                    → claude/.claude/rules/
 ~/.gemini/GEMINI.md                 → gemini/.gemini/GEMINI.md
 ~/.gemini/rules/                    → gemini/.gemini/rules/
+~/.vimrc                            → vim/.vimrc
 ~/.config/starship.toml             → starship/.config/starship.toml
 ```
 
