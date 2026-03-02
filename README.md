@@ -49,15 +49,22 @@ dotfiles/
 │       └── config.nu           # Starship + direnv hook; sources aliases.nu
 ├── starship/                   # Stow package
 │   └── .config/starship.toml   # Prompt theme: hostname, directory, git, languages
-└── claude/                     # Stow package
-    └── .claude/
-        ├── CLAUDE.md           # Global instructions (references rules/)
-        └── rules/              # Instruction modules
-            ├── git.md
-            ├── docs.md
-            ├── testing.md
-            ├── coding.md
-            └── product.md
+├── ai/                         # Shared AI configuration
+│   └── rules/                  # Shared rule files for both Claude and Gemini
+│       ├── coding.md
+│       ├── design.md
+│       ├── docs.md
+│       ├── git.md
+│       ├── product.md
+│       └── testing.md
+├── claude/                     # Stow package
+│   └── .claude/
+│       ├── CLAUDE.md           # References symlinked rules/
+│       └── rules               → ../../ai/rules
+└── gemini/                     # Stow package
+    └── .gemini/
+        ├── GEMINI.md           # References symlinked rules/
+        └── rules               → ../../ai/rules
 ```
 
 ## Make Targets
@@ -90,6 +97,8 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ~/.config/nushell/config.nu         → nushell/.config/nushell/config.nu
 ~/.claude/CLAUDE.md                 → claude/.claude/CLAUDE.md
 ~/.claude/rules/                    → claude/.claude/rules/
+~/.gemini/GEMINI.md                 → gemini/.gemini/GEMINI.md
+~/.gemini/rules/                    → gemini/.gemini/rules/
 ~/.config/starship.toml             → starship/.config/starship.toml
 ```
 
@@ -178,6 +187,16 @@ The `claude/` stow package manages only user-authored Claude Code configuration 
 - `rules/*.md` — Modular instruction files (git, docs, testing, coding, product)
 
 Stow creates individual symlinks inside `~/.claude/` (tree unfolding) so Claude-managed files coexist alongside the symlinked config.
+
+## Gemini CLI
+
+The `gemini/` stow package manages Gemini CLI configuration files. Similar to Claude, it uses a global `GEMINI.md` that references modular rules.
+
+**Managed files:**
+- `GEMINI.md` — Global instructions (located at `~/.gemini/GEMINI.md`)
+- `rules/*.md` — Modular instruction files (git, docs, testing, coding, product, design)
+
+Stow creates individual symlinks inside `~/.gemini/` so Gemini-managed files coexist alongside the symlinked config.
 
 ## Adding New Dotfiles
 
