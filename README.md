@@ -50,21 +50,25 @@ dotfiles/
 ├── starship/                   # Stow package
 │   └── .config/starship.toml   # Prompt theme: hostname, directory, git, languages
 ├── ai/                         # Shared AI configuration
-│   └── rules/                  # Shared rule files for both Claude and Gemini
-│       ├── coding.md
-│       ├── design.md
-│       ├── docs.md
-│       ├── git.md
-│       ├── product.md
-│       └── testing.md
+│   ├── rules/                  # Shared rule files for both Claude and Gemini
+│   │   ├── coding.md
+│   │   ├── design.md
+│   │   ├── docs.md
+│   │   ├── git.md
+│   │   ├── product.md
+│   │   └── testing.md
+│   └── skills/                 # Shared skill files for both Claude and Gemini
+│       └── design/             # Shared design skill
 ├── claude/                     # Stow package
 │   └── .claude/
 │       ├── CLAUDE.md           # References symlinked rules/
-│       └── rules               → ../../ai/rules
+│       ├── rules               → ../../ai/rules
+│       └── skills              → ../../ai/skills
 └── gemini/                     # Stow package
     └── .gemini/
         ├── GEMINI.md           # References symlinked rules/
-        └── rules               → ../../ai/rules
+        ├── rules               → ../../ai/rules
+        └── skills              → ../../ai/skills
 ├── vim/                        # Stow package
 │   └── .vimrc                  # 2-space indentation
 ```
@@ -99,8 +103,10 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ~/.config/nushell/config.nu         → nushell/.config/nushell/config.nu
 ~/.claude/CLAUDE.md                 → claude/.claude/CLAUDE.md
 ~/.claude/rules/                    → claude/.claude/rules/
+~/.claude/skills/                   → claude/.claude/skills/
 ~/.gemini/GEMINI.md                 → gemini/.gemini/GEMINI.md
 ~/.gemini/rules/                    → gemini/.gemini/rules/
+~/.gemini/skills/                   → gemini/.gemini/skills/
 ~/.vimrc                            → vim/.vimrc
 ~/.config/starship.toml             → starship/.config/starship.toml
 ```
@@ -187,7 +193,8 @@ The `claude/` stow package manages only user-authored Claude Code configuration 
 
 **Managed files:**
 - `CLAUDE.md` — Global instructions that reference modular rules
-- `rules/*.md` — Modular instruction files (git, docs, testing, coding, product)
+- `rules/` — Symlinked to `ai/rules/`
+- `skills/` — Symlinked to `ai/skills/`
 
 Stow creates individual symlinks inside `~/.claude/` (tree unfolding) so Claude-managed files coexist alongside the symlinked config.
 
@@ -197,7 +204,8 @@ The `gemini/` stow package manages Gemini CLI configuration files. Similar to Cl
 
 **Managed files:**
 - `GEMINI.md` — Global instructions (located at `~/.gemini/GEMINI.md`)
-- `rules/*.md` — Modular instruction files (git, docs, testing, coding, product, design)
+- `rules/` — Symlinked to `ai/rules/`
+- `skills/` — Symlinked to `ai/skills/`
 
 Stow creates individual symlinks inside `~/.gemini/` so Gemini-managed files coexist alongside the symlinked config.
 
