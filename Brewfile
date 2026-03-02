@@ -117,6 +117,7 @@ brew 'anomalyco/tap/opencode'
 cask 'cursor-cli'
 cask 'kiro'
 cask 'kiro-cli'
+brew 'gemini-cli'
 
 ##########
 # design #
