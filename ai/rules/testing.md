@@ -5,3 +5,6 @@
 - Create and run mutation tests as part of the pipeline so we make sure coverage makes sense.
 - CI pipelines should always be there. Every new project starts with a pipepline, which can be run locally.
 - Before considering a task is done, run the pipeline locally, especially the quick tests.
+- Build contract tests. Consumers drive the contracts. Add validation steps on CI.
+- Include property based testing when applicable.
+- Create seed data in multiple different sizes. User has option to run one of them when desired.

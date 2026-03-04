@@ -15,3 +15,7 @@
 
 # design
 - @rules/design.md
+
+# security
+- @rules/security.md
+
