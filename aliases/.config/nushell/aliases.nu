@@ -54,3 +54,5 @@ def http_server [port?: int] {
 # tmux
 alias t = tmux
 alias ta = tmux attach -t
+export alias qwen = ollama run qwen3-coder:30b-a3b
+export alias qwen-pull = ollama pull qwen3-coder:30b-a3b

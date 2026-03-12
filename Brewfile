@@ -129,3 +129,4 @@ cask 'figma'
 #######
 brew 'gh'
 brew 'tailscale'
+cask "ollama"

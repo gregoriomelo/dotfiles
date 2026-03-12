@@ -35,3 +35,5 @@ alias brewup='brew update; brew upgrade; brew cleanup --prune=all'
 # tmux
 alias t=tmux
 alias ta='tmux attach -t'
+alias qwen="ollama run qwen3-coder:30b-a3b"
+alias qwen-pull="ollama pull qwen3-coder:30b-a3b"
