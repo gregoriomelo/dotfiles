@@ -1,8 +1,8 @@
 STOW_PACKAGES := aliases zsh git tmux glow nushell claude ghostty starship gemini vim
 
-.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos nushell-init ghostty-init default-shell
+.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init default-shell
 
-setup: homebrew brew stow tpm macos nushell-init ghostty-init
+setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init
 	@echo "✓ Bootstrap complete"
 
 homebrew:
@@ -101,3 +101,14 @@ default-shell:
 	fi
 	chsh -s /opt/homebrew/bin/nu
 	@echo "✓ Default shell set to nushell. Restart your terminal."
+
+
+quarantine-clean:
+	@echo "Trusting Homebrew binaries (removing quarantine flags)..."
+	@for bin in ollama claude gemini; do \
+		BIN_PATH=$$(which $$bin 2>/dev/null); \
+		if [ -n "$$BIN_PATH" ]; then \
+			sudo xattr -d com.apple.quarantine "$$BIN_PATH" 2>/dev/null || true; \
+		fi; \
+	done
+	@echo "✓ Homebrew binaries trusted"
