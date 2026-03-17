@@ -118,6 +118,7 @@ cask 'cursor-cli'
 cask 'kiro'
 cask 'kiro-cli'
 brew 'gemini-cli'
+brew 'rtk'
 
 ##########
 # design #

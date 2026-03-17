@@ -1,4 +1,16 @@
 .DS_Store
 /.claude/
-claude/.claude/settings.json
 .Brewfile.swp
+claude/.claude/.credentials.json
+claude/.claude/RTK.md
+claude/.claude/cache/
+claude/.claude/file-history/
+claude/.claude/hooks/
+claude/.claude/sessions/
+claude/.claude/settings.json.bak
+claude/.claude/backups/
+claude/.claude/history.jsonl
+claude/.claude/plugins/
+claude/.claude/projects/
+claude/.claude/shell-snapshots/
+claude/.claude/settings.json
