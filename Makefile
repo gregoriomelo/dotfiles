@@ -1,8 +1,8 @@
 STOW_PACKAGES := aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim
 
-.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init default-shell
+.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init default-shell
 
-setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init
+setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init
 	@echo "✓ Bootstrap complete"
 
 homebrew:
@@ -98,6 +98,17 @@ rtk-init: stow
 	@echo "Initializing RTK..."
 	rtk init -g --auto-patch
 	@echo "✓ RTK initialized"
+
+vim-init: stow
+	@if [ ! -f "$$HOME/.vim/autoload/plug.vim" ]; then \
+		echo "Installing vim-plug..."; \
+		curl -fLo $$HOME/.vim/autoload/plug.vim --create-dirs \
+			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim; \
+	else \
+		echo "✓ vim-plug already installed"; \
+	fi
+	@vim +PlugInstall +qall || true
+	@echo "✓ vim initialized"
 
 default-shell:
 	@echo "Registering nushell in /etc/shells and setting as default..."

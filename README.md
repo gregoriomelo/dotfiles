@@ -19,6 +19,7 @@ This single command:
 3. Uses Stow to symlink configs to `$HOME`
 4. Clones TPM (Tmux Plugin Manager)
 5. Applies macOS developer defaults
+6. Installs vim-plug and vim plugins
 
 ## Directory Structure
 
@@ -64,23 +65,24 @@ dotfiles/
 │       ├── CLAUDE.md           # References symlinked rules/
 │       ├── rules               → ../../ai/rules
 │       └── skills              → ../../ai/skills
-└── gemini/                     # Stow package
-    └── .gemini/
-        ├── GEMINI.md           # References symlinked rules/
-        ├── rules               → ../../ai/rules
-        └── skills              → ../../ai/skills
-├── vim/                        # Stow package
-│   └── .vimrc                  # 2-space indentation
+├── gemini/                     # Stow package
+│   └── .gemini/
+│       ├── GEMINI.md           # References symlinked rules/
+│       ├── rules               → ../../ai/rules
+│       └── skills              → ../../ai/skills
+└── vim/                        # Stow package
+    └── .vimrc                  # Plugins: NERDTree, vim-airline, fzf.vim, vim-surround
 ```
 
 ## Make Targets
 
-- **`make setup`** (default) — Runs all targets in order: `homebrew`, `brew`, `stow`, `tpm`, `macos`
+- **`make setup`** (default) — Runs all targets in order: `homebrew`, `brew`, `stow`, `tpm`, `macos`, `vim-init`
 - **`make homebrew`** — Installs Homebrew if missing (idempotent)
 - **`make brew`** — Runs `brew bundle --file=Brewfile` (requires homebrew)
 - **`make stow`** — Symlinks packages using GNU Stow (requires stow from brew)
 - **`make tpm`** — Clones TPM + catppuccin/tmux, then installs all plugins (idempotent)
 - **`make macos`** — Applies macOS defaults and restarts Dock/Finder
+- **`make vim-init`** — Installs vim-plug and all vim plugins (idempotent, requires stow)
 - **`make nushell-init`** — Generates `~/.cache/starship/init.nu` (one-time, run after `make stow`)
 - **`make default-shell`** — Registers nushell in `/etc/shells` and sets it as the login shell (requires sudo)
 
@@ -187,6 +189,24 @@ aliases/
 
 When adding or changing an alias, edit **both files**. See [docs/nushell.md](docs/nushell.md) for syntax reference.
 
+## Vim
+
+See [docs/vim.md](docs/vim.md) for full details.
+
+**Plugin manager:** vim-plug (auto-installed by `make vim-init`)
+
+**Plugins:** NERDTree, vim-airline, fzf.vim, vim-surround
+
+| Key | Action |
+|-----|--------|
+| `,d` | Toggle file tree (NERDTree) |
+| `,t` | Fuzzy file finder (fzf) |
+| `,f` | Full-text search across project (Rg) |
+| `,<space>` | Clear search highlight |
+| `cs'"` | Change surrounding `'` → `"` |
+| `ds"` | Delete surrounding `"` |
+| `ysiw"` | Wrap word in `"` |
+
 ## Claude Code
 
 The `claude/` stow package manages only user-authored Claude Code configuration files. The `~/.claude/` directory also contains Claude-managed state (history, credentials, projects, etc.) which is **not** version-controlled.
@@ -253,6 +273,7 @@ dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
 - **README.md** (this file) — Setup and usage
 - **Makefile** — Automation targets
 - **scripts/macos-defaults.sh** — System preferences configuration
+- **docs/vim.md** — Vim plugin reference and keybindings
 - **docs/tmux.md** — Full tmux keybinding and plugin reference
 - **docs/nushell.md** — Nushell setup, alias syntax reference, and co-location convention
 - **docs/starship.md** — Starship prompt configuration reference
@@ -262,5 +283,6 @@ dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
   - [2026-02-18: Nushell Default Shell](docs/tasks/2026-02-18-nushell-default-shell.md)
   - [2026-02-18: Claude Code Config](docs/tasks/2026-02-18-claude-code-config.md)
   - [2026-02-22: Starship Config](docs/tasks/2026-02-22-starship-config.md)
+  - [2026-03-17: Vim Plugin Setup](docs/tasks/2026-03-17-vim-plugins.md)
 
 See also: `claude/.claude/CLAUDE.md` for global Claude Code instructions.
