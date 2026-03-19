@@ -100,10 +100,10 @@ rtk-init: stow
 	@echo "✓ RTK initialized"
 
 vim-init: stow
+	@mkdir -p "$$HOME/.vim/autoload"
 	@if [ ! -f "$$HOME/.vim/autoload/plug.vim" ]; then \
 		echo "Installing vim-plug..."; \
-		mkdir -p $$HOME/.vim/autoload; \
-		curl -fLo $$HOME/.vim/autoload/plug.vim \
+		curl -fLo "$$HOME/.vim/autoload/plug.vim" \
 			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim; \
 	else \
 		echo "✓ vim-plug already installed"; \
