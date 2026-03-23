@@ -131,3 +131,8 @@ cask 'figma'
 #######
 brew 'gh'
 brew 'tailscale'
+
+############
+# blogging #
+############
+brew 'hugo'
