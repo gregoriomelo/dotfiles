@@ -8,3 +8,6 @@
 - Build contract tests. Consumers drive the contracts. Add validation steps on CI.
 - Include property based testing when applicable.
 - Create seed data in multiple different sizes. User has option to run one of them when desired.
+- don’t delete tests simply because they are failing. Fix them.
+- Tests of any kind should be very human readable.
+- Avoid duplications in test files, unless they are small and help improve human understanding of what the test does.
