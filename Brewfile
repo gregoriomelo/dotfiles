@@ -130,6 +130,7 @@ cask 'figma'
 # dev #
 #######
 brew 'gh'
+brew 'forgejo-cli'
 brew 'tailscale'
 
 ############
