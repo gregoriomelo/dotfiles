@@ -30,3 +30,4 @@ Model: claude-sonnet-4-20250514
 - `Coding-Agent`: the tool name (e.g. `Claude Code`, `pi`). Include version if available.
 - `Model`: the most specific model identifier available (e.g. `claude-sonnet-4-20250514`).
 - Trailers go after a blank line following the body (or subject if no body).
+- Do not push code, unless I ask you to.
