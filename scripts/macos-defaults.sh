@@ -75,4 +75,32 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # Disable quarantine warning dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
+# Keyboard remapping
+# CapsLock → Left Control
+hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}'
+
+# Persist CapsLock → Left Control via launchd (survives reboots)
+PLIST="$HOME/Library/LaunchAgents/com.local.keyremap.plist"
+cat > "$PLIST" <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.local.keyremap</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/hidutil</string>
+        <string>property</string>
+        <string>--set</string>
+        <string>{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
+EOF
+launchctl unload "$PLIST" 2>/dev/null || true
+launchctl load "$PLIST"
+
 echo "macOS defaults applied"
