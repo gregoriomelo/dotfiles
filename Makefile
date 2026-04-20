@@ -1,4 +1,4 @@
-STOW_PACKAGES := aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim
+STOW_PACKAGES := aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi
 
 .PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init default-shell
 
@@ -122,7 +122,7 @@ default-shell:
 
 quarantine-clean:
 	@echo "Trusting Homebrew binaries (removing quarantine flags)..."
-	@for bin in ollama claude gemini rtk; do \
+	@for bin in ollama claude gemini rtk pi; do \
 		BIN_PATH=$$(which $$bin 2>/dev/null); \
 		if [ -n "$$BIN_PATH" ]; then \
 			sudo xattr -d com.apple.quarantine "$$BIN_PATH" 2>/dev/null || true; \

@@ -119,6 +119,7 @@ cask 'kiro'
 cask 'kiro-cli'
 brew 'gemini-cli'
 brew 'rtk'
+brew 'pi-coding-agent'
 
 ##########
 # design #
