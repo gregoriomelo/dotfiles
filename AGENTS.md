@@ -7,6 +7,11 @@ This file describes the specialized agent personalities (subagents) available fo
 **Location:** `.agents/steward.md`
 **Usage:** Call with `@steward` to ensure any new tools or configurations follow the repository's patterns.
 
+## @macos
+**Role:** Expert in macOS system preferences, `defaults` commands, and system-level automation.
+**Location:** `.agents/macos.md`
+**Usage:** Call with `@macos` to update `scripts/macos-defaults.sh` or configure OS-level settings.
+
 ---
 
 ### Shared Agent Rules (ai/rules/)
@@ -24,3 +29,6 @@ On-demand capabilities available to all agents:
 - **task-recorder:** Automates the generation of `docs/tasks/` summaries.
 - **usage-tracker:** Monitors Claude plan usage and session costs.
 - **design:** Activates design director mode for visual artifacts.
+- **alias-sync:** (new) Synchronizes aliases between Zsh and Nushell.
+- **brew-sync:** (new) Maintains the `Brewfile` in sync with installed packages.
+- **health-check:** (new) Runs a suite of validation tests on the environment.

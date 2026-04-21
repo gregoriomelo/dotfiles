@@ -29,8 +29,9 @@ dotfiles/
 ├── Brewfile                    # Homebrew packages (not stowed)
 ├── AGENTS.md                   # Project-scoped AI agent manifest (new)
 ├── CLAUDE.md                   # Project-scoped Claude Code instructions (new)
-├── .agents/                    # Project-scoped subagent definitions (new)
-│   └── steward.md              # Dotfiles maintenance subagent
+├── .agents/                    # Project-scoped subagent definitions
+│   ├── steward.md              # Dotfiles maintenance subagent
+│   └── macos.md                # (new) macOS settings subagent
 ├── scripts/
 │   └── macos-defaults.sh       # macOS system preferences
 ├── aliases/                    # Stow package
@@ -63,8 +64,11 @@ dotfiles/
 │   │   └── testing.md
 │   └── skills/                 # Shared skill files for all agents
 │       ├── design/             # Design director mode
-│       ├── task-recorder/      # (new) Documentation automation
-│       └── usage-tracker/      # (new) Resource consumption monitor
+│       ├── task-recorder/      # Documentation automation
+│       ├── usage-tracker/      # Resource consumption monitor
+│       ├── alias-sync/         # (new) Zsh/Nushell alias sync
+│       ├── brew-sync/          # (new) Brewfile synchronization
+│       └── health-check/       # (new) Environment validation suite
 ├── claude/                     # Stow package
 │   └── .claude/
 │       ├── CLAUDE.md           # Global Claude instructions
@@ -221,11 +225,15 @@ See [docs/vim.md](docs/vim.md) for full details.
 This repository includes a project-scoped AI agent configuration that provides a specialized experience for any coding agent (Claude, Gemini, Pi) working on these dotfiles.
 
 - **`AGENTS.md`**: The central manifest defining specialized subagents and rules.
-- **`@steward` subagent**: Defined in `.agents/steward.md`. It enforces repository conventions (Stow-first, Makefile integrity, alias co-location).
-- **Automated Documentation**: The `@task-recorder` skill (in `ai/skills/task-recorder`) is used to maintain the `docs/tasks/` journal.
-- **Usage Monitoring**: The `@usage-tracker` skill provides real-time visibility into Claude plan consumption and session costs.
+- **`@steward` subagent**: Enforces repository conventions (Stow-first, Makefile integrity, alias co-location).
+- **`@macos` subagent**: (new) Manages macOS system preferences and `macos-defaults.sh`.
+- **`@task-recorder` skill**: Automates the generation of `docs/tasks/` summaries.
+- **`@usage-tracker` skill**: Provides real-time visibility into Claude plan consumption.
+- **`@alias-sync` skill**: (new) Ensures shell aliases are identical in Zsh and Nushell.
+- **`@brew-sync` skill**: (new) Keeps the `Brewfile` in sync with your machine.
+- **`@health-check` skill**: (new) Runs a suite of validation tests to ensure your environment is healthy.
 
-To use these features, simply interact with your agent as usual while in this directory. You can explicitly call the steward with `@steward` or invoke skills like `"Record this task"`.
+To use these features, simply interact with your agent as usual while in this directory. You can explicitly call subagents (e.g., `@steward fix the Makefile` or `@macos show hidden files`) or invoke skills (e.g., `"Record this task"` or `"Check my environment health"`).
 
 ## Claude Code
 
