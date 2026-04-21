@@ -18,4 +18,3 @@
 
 # security
 @./rules/security.md
-

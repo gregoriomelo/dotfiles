@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Phase 2: Helm charts for all services",
+  "description": "helm/charts/ — traefik-config, hello-world, registry, forgejo, gatus. Each with Chart.yaml, values.yaml, Deployment, Service, Ingress, PV/PVC, InfisicalSecret templates.",
+  "activeForm": "Building Helm charts",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Phase 3+4: Infisical role + k3s-deploy role + deploy.yml update",
+  "description": "roles/infisical/ and helm/charts/infisical/ for secrets mgmt. roles/k3s-deploy/ for app deployment. Update deploy.yml with conditional k3s vs docker-compose. Update fail2ban for Traefik logs.",
+  "activeForm": "Building Infisical and deployment roles",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Phase 1: k3s Ansible role + site.yml update",
+  "description": "roles/k3s/ — install script, config template, Traefik HelmChartConfig, Helm binary install, UFW rules, kubeconfig. Update site.yml and firewall role.",
+  "activeForm": "Building k3s role",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": []
+}

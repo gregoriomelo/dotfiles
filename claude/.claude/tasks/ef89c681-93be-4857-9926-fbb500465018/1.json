@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Phase 0: Preparation — docs, requirements, variable toggles",
+  "description": "ADR, runbook, requirements.yml update, k3s_enabled toggle in main.yml, .gitignore, Makefile helm-lint",
+  "activeForm": "Setting up preparation files",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": []
+}

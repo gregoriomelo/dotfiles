@@ -27,7 +27,10 @@ This single command:
 dotfiles/
 ├── Makefile                    # Entry point; run `make setup`
 ├── Brewfile                    # Homebrew packages (not stowed)
-├── .gitignore                  # Excludes .DS_Store, repo-root .claude/
+├── AGENTS.md                   # Project-scoped AI agent manifest (new)
+├── CLAUDE.md                   # Project-scoped Claude Code instructions (new)
+├── .agents/                    # Project-scoped subagent definitions (new)
+│   └── steward.md              # Dotfiles maintenance subagent
 ├── scripts/
 │   └── macos-defaults.sh       # macOS system preferences
 ├── aliases/                    # Stow package
@@ -51,25 +54,31 @@ dotfiles/
 ├── starship/                   # Stow package
 │   └── .config/starship.toml   # Prompt theme: hostname, directory, git, languages
 ├── ai/                         # Shared AI configuration
-│   ├── rules/                  # Shared rule files for both Claude and Gemini
-│   │   ├── coding.md
+│   ├── rules/                  # Shared rule files for all agents
+│   │   ├── coding.md           # Preferred coding preferences
 │   │   ├── design.md
-│   │   ├── docs.md
+│   │   ├── docs.md             # ADRs and task-recorder automation
 │   │   ├── git.md
 │   │   ├── product.md
 │   │   └── testing.md
-│   └── skills/                 # Shared skill files for both Claude and Gemini
-│       └── design/             # Shared design skill
+│   └── skills/                 # Shared skill files for all agents
+│       ├── design/             # Design director mode
+│       ├── task-recorder/      # (new) Documentation automation
+│       └── usage-tracker/      # (new) Resource consumption monitor
 ├── claude/                     # Stow package
 │   └── .claude/
-│       ├── CLAUDE.md           # References symlinked rules/
+│       ├── CLAUDE.md           # Global Claude instructions
 │       ├── rules               → ../../ai/rules
 │       └── skills              → ../../ai/skills
 ├── gemini/                     # Stow package
 │   └── .gemini/
-│       ├── GEMINI.md           # References symlinked rules/
+│       ├── GEMINI.md           # Global Gemini instructions
 │       ├── rules               → ../../ai/rules
 │       └── skills              → ../../ai/skills
+├── pi/                         # Stow package
+│   └── .pi/
+│       └── agent/
+│           └── skills          → ../../../ai/skills
 └── vim/                        # Stow package
     └── .vimrc                  # Plugins: NERDTree, vim-airline, fzf.vim, vim-surround
 ```
@@ -206,6 +215,17 @@ See [docs/vim.md](docs/vim.md) for full details.
 | `cs'"` | Change surrounding `'` → `"` |
 | `ds"` | Delete surrounding `"` |
 | `ysiw"` | Wrap word in `"` |
+
+## Project AI Agents
+
+This repository includes a project-scoped AI agent configuration that provides a specialized experience for any coding agent (Claude, Gemini, Pi) working on these dotfiles.
+
+- **`AGENTS.md`**: The central manifest defining specialized subagents and rules.
+- **`@steward` subagent**: Defined in `.agents/steward.md`. It enforces repository conventions (Stow-first, Makefile integrity, alias co-location).
+- **Automated Documentation**: The `@task-recorder` skill (in `ai/skills/task-recorder`) is used to maintain the `docs/tasks/` journal.
+- **Usage Monitoring**: The `@usage-tracker` skill provides real-time visibility into Claude plan consumption and session costs.
+
+To use these features, simply interact with your agent as usual while in this directory. You can explicitly call the steward with `@steward` or invoke skills like `"Record this task"`.
 
 ## Claude Code
 

@@ -1,3 +1,6 @@
 macos-option-as-alt = false
 theme = Light Owl
 shell-integration-features = ssh-terminfo,ssh-env
+
+keybind = alt+backspace=text:\x1b\x7f
+keybind = shift+enter=text:\n
