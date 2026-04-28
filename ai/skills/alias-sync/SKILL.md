@@ -8,30 +8,21 @@ user-invocable: true
 
 # Alias Sync Skill
 
-This skill ensures that your shell experience is consistent regardless of whether you are using Zsh or Nushell.
+This skill ensures that your shell experience is consistent regardless of whether you are using Zsh or Nushell by utilizing an executable script for perfect reliability.
 
 ## Protocol
 
 ### 1. Parsing
-Identify the alias name and the command.
--   **Example:** `gs='git status'`
+Identify the alias name and the command from the user's request.
+-   **Example:** `gs='git status'` -> Name: `gs`, Command: `git status`
 
-### 2. Format Translation
-
-#### Zsh Format (`aliases/.aliases`)
--   Simple alias: `alias [name]='[command]'`
--   Function: `function [name] { [command] }`
-
-#### Nushell Format (`aliases/.config/nushell/aliases.nu`)
--   Simple alias: `alias [name] = [command]` (note the spaces around `=`)
--   Command/Function: `def [name] [] { [command] }`
--   Environment variables: Use `$env.VAR_NAME` instead of `$VAR_NAME`.
-
-### 3. Execution Phase
--   **Step 1:** Append the Zsh-formatted alias to `aliases/.aliases`.
--   **Step 2:** Append the Nushell-formatted alias to `aliases/.config/nushell/aliases.nu`.
--   **Step 3:** Group aliases by category (e.g., `# git`, `# docker`) if possible, or append to the end under a `# New Aliases` section if the category is unclear.
+### 2. Execution Phase
+Run the dedicated script to safely write the alias to both configurations:
+```bash
+./scripts/add-alias.sh "[name]" "[command]"
+```
 
 ## Guidance
--   If the command uses shell-specific features (like pipes or complex logic), prioritize creating a `def` in Nushell to ensure it handles structured data correctly.
+-   If the command is highly complex or requires shell-specific logic (like functions or structured data pipelines), do not use the script. Instead, manually append the correctly translated formats to both files as a bespoke implementation.
+-   For all standard aliases (e.g., string replacements), always use the script.
 -   Inform the user once the synchronization is complete.
