@@ -1,8 +1,8 @@
 STOW_PACKAGES := aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi
 
-.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init default-shell
+.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init ai-plugins default-shell
 
-setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init
+setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init ai-plugins
 	@echo "✓ Bootstrap complete"
 
 homebrew:
@@ -129,3 +129,8 @@ quarantine-clean:
 		fi; \
 	done
 	@echo "✓ Homebrew binaries trusted"
+
+ai-plugins:
+	@echo "Syncing AI agent plugins..."
+	@bash scripts/setup-ai-plugins.sh
+	@echo "✓ AI agent plugins synced"
