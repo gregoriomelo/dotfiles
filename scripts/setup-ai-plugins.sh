@@ -25,7 +25,7 @@ fi
 # OpenCode
 if command -v opencode &> /dev/null; then
   echo "Checking OpenCode plugins..."
-  opencode plugin install https://github.com/obra/superpowers 2>/dev/null || true
+  opencode plugin https://github.com/obra/superpowers 2>/dev/null || true
 fi
 
 echo "✅ AI agent plugins synchronized."
