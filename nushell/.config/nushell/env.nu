@@ -11,3 +11,6 @@ $env.PATH = ($env.PATH | split row (char esep)
 # Custom dirs referenced in aliases
 $env.DEV_HOME = '/Users/gregoriomelo/dev'
 $env.DOTFILES_HOME = '/Users/gregoriomelo/dev/dotfiles'
+
+# gpg
+$env.GPG_TTY = (tty)

@@ -23,3 +23,7 @@
 	tool = opendiff
 [init]
 	defaultBranch = main
+[commit]
+	gpgsign = true
+[include]
+	path = ~/.gitconfig.local
