@@ -16,5 +16,7 @@ claude/.claude/shell-snapshots/
 claude/.claude/settings.json
 claude/.claude/paste-cache/
 claude/.claude/plans
+claude/.claude/tasks
+claude/.claude/mcp-needs-auth-cache.json
 .opencode/
 git/.gitconfig.*
