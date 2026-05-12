@@ -48,6 +48,9 @@ brew 'xcode-build-server'
 brew 'xcbeautify'
 brew 'swiftformat'
 
+# elixir
+brew 'elixir'
+
 # docker
 brew 'docker'
 brew 'docker-compose'
@@ -73,6 +76,7 @@ cask 'caffeine'
 cask 'alfred'
 mas 'Magnet', id: 441258766
 mas 'The Unarchiver', id: 425424353
+cask 'notchnook'
 
 ##########
 # gaming #
