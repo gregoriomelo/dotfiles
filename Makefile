@@ -1,4 +1,4 @@
-STOW_PACKAGES := aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi
+STOW_PACKAGES := ai aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi
 
 .PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init ai-plugins default-shell
 
