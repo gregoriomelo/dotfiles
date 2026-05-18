@@ -114,6 +114,7 @@ cask 'cursor'
 ######
 # ai #
 ######
+brew 'openspec'
 cask 'claude'
 cask 'block-goose'
 brew 'block-goose-cli'

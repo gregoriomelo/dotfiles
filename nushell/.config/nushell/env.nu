@@ -12,5 +12,8 @@ $env.PATH = ($env.PATH | split row (char esep)
 $env.DEV_HOME = '/Users/gregoriomelo/dev'
 $env.DOTFILES_HOME = '/Users/gregoriomelo/dev/dotfiles'
 
+# ai
+$env.OPENSPEC_TELEMETRY = '0'
+
 # gpg
 $env.GPG_TTY = (tty)

@@ -1,8 +1,8 @@
 STOW_PACKAGES := ai aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi task
 
-.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init ai-plugins default-shell
+.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell
 
-setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init ai-plugins
+setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins
 	@echo "✓ Bootstrap complete"
 
 homebrew:
@@ -119,6 +119,14 @@ task-init: stow
 	else \
 		task rc.confirmation=no version > /dev/null 2>&1; \
 		echo "✓ Taskwarrior initialized"; \
+	fi
+
+openspec-init: stow
+	@echo "Initializing OpenSpec..."
+	@if [ -L "$$HOME/.openspec/rules" ]; then \
+		echo "✓ OpenSpec global rules linked"; \
+	else \
+		echo "✗ OpenSpec global rules not linked properly"; \
 	fi
 
 default-shell:
