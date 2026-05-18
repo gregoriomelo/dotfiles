@@ -1,0 +1,17 @@
+# task/.taskrc
+# Taskwarrior Configuration
+
+# Storage location
+data.location=~/.task
+
+# Theme / Colors
+# Light theme to match Ghostty Light Owl
+include /opt/homebrew/share/doc/task/rc/light-256.theme
+
+# Formatting
+# 2-space indentation to match .vimrc
+indent.report=2
+
+# General settings
+confirmation=yes
+allow.empty.filter=yes

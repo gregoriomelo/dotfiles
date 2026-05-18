@@ -18,6 +18,7 @@ brew 'starship'
 brew 'nushell'
 brew 'tmux'
 brew 'glow'
+brew 'task'
 
 ###############
 # programming #
