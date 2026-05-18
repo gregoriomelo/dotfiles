@@ -1,8 +1,8 @@
 STOW_PACKAGES := ai aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi task
 
-.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init ai-plugins default-shell
+.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init ai-plugins default-shell
 
-setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init ai-plugins
+setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init ai-plugins
 	@echo "✓ Bootstrap complete"
 
 homebrew:
@@ -110,6 +110,16 @@ vim-init: stow
 	fi
 	@vim +PlugInstall +qall || true
 	@echo "✓ vim initialized"
+
+task-init: stow
+	@echo "Initializing Taskwarrior..."
+	@mkdir -p $$HOME/.task
+	@if [ ! -f "$$HOME/.taskrc" ]; then \
+		echo "Taskwarrior not symlinked properly."; \
+	else \
+		task rc.confirmation=no version > /dev/null 2>&1; \
+		echo "✓ Taskwarrior initialized"; \
+	fi
 
 default-shell:
 	@echo "Registering nushell in /etc/shells and setting as default..."
