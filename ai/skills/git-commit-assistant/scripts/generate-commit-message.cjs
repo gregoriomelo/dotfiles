@@ -10,10 +10,10 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
-const { agent, model, scope, summary, body } = params;
+const { scope, summary, body } = params;
 
-if (!agent || !model || !summary) {
-  console.error('Usage: node generate-commit-message.cjs --agent "Agent" --model "Model" --summary "Summary" [--scope "Scope"] [--body "Body"]');
+if (!summary) {
+  console.error('Usage: node generate-commit-message.cjs --summary "Summary" [--scope "Scope"] [--body "Body"]');
   process.exit(1);
 }
 
@@ -28,8 +28,5 @@ if (scope) {
 if (body) {
   message += `\n${body}\n`;
 }
-
-message += `\nCoding-Agent: ${agent}`;
-message += `\nModel: ${model}\n`;
 
 console.log(message);
