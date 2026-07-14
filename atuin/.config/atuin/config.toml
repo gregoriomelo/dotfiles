@@ -1,0 +1,24 @@
+# Atuin Configuration (Config-as-Code)
+# https://atuin.sh/docs/config
+
+# Automatically sync history if logged in
+auto_sync = true
+
+# Disable update check to avoid shell startup delay
+update_check = false
+
+# How often to sync
+sync_frequency = "1h"
+
+# Search settings
+# Modes: "fuzzy", "prefix", "fulltext", "skim"
+search_mode = "fuzzy"
+
+# Filter results globally (rather than just the current directory/session)
+filter_mode = "global"
+
+# UI settings
+style = "compact"
+inline_height = 20
+show_preview = true
+enter_accept = false

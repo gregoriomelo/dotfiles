@@ -7,6 +7,12 @@ source ~/.config/nushell/aliases.nu
 
 # direnv
 $env.config = {
+    history: {
+        file_format: "sqlite"
+        max_size: 100_000
+        sync_on_enter: true
+        isolation: false
+    }
     hooks: {
         env_change: {
             PWD: [{ |before, after|
@@ -18,3 +24,7 @@ $env.config = {
         }
     }
 }
+
+# Atuin history
+source ~/.config/nushell/atuin.nu
+
