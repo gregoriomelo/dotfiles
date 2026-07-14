@@ -123,7 +123,7 @@ brew 'opencode'
 cask 'cursor-cli'
 cask 'kiro'
 cask 'kiro-cli'
-brew 'gemini-cli'
+cask 'antigravity-cli'
 brew 'rtk'
 brew 'pi-coding-agent'
 
