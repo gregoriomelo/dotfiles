@@ -1,8 +1,8 @@
 STOW_PACKAGES := ai aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi task
 
-.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell
+.PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell gpg-init
 
-setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins
+setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins gpg-init
 	@echo "✓ Bootstrap complete"
 
 homebrew:
@@ -152,3 +152,9 @@ ai-plugins:
 	@echo "Syncing AI agent plugins..."
 	@bash scripts/setup-ai-plugins.sh
 	@echo "✓ AI agent plugins synced"
+
+gpg-init: stow
+	@echo "Configuring GPG agent..."
+	@chmod 700 $$HOME/.gnupg
+	@gpgconf --kill gpg-agent
+	@echo "✓ GPG agent configured with pinentry-mac"
