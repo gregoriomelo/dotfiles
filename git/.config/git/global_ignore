@@ -31,3 +31,7 @@ ngrok
 .tern-port
 *.dump
 *un~
+
+CLAUDE.md
+docs/superpowers/
+memory/
