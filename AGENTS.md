@@ -32,3 +32,4 @@ On-demand capabilities available to all agents:
 - **alias-sync:** (new) Synchronizes aliases between Zsh and Nushell.
 - **brew-sync:** (new) Maintains the `Brewfile` in sync with installed packages.
 - **health-check:** (new) Runs a suite of validation tests on the environment.
+- **i-have-adhd:** (new) Shapes output for readers with ADHD (action-first, numbered steps, no preamble/recaps).
