@@ -16,12 +16,13 @@ if command -v claude &> /dev/null; then
   claude plugin install https://github.com/ayghri/i-have-adhd 2>/dev/null || true
 fi
 
-# Gemini CLI
-if command -v gemini &> /dev/null; then
-  echo "Checking Gemini CLI extensions..."
-  # Install with --consent to bypass interactive prompts in scripts
-  gemini extensions install https://github.com/obra/superpowers --auto-update --consent 2>/dev/null || true
-  gemini extensions install https://github.com/ayghri/i-have-adhd --auto-update --consent 2>/dev/null || true
+# Antigravity CLI (agy)
+if command -v agy &> /dev/null; then
+  echo "Checking Antigravity plugins..."
+  # Add marketplace if needed, or just install by URL (agy supports plugin@marketplace or URL)
+  agy plugin link obra/superpowers-marketplace https://github.com/obra/superpowers-marketplace 2>/dev/null || true
+  agy plugin install superpowers@obra/superpowers-marketplace 2>/dev/null || agy plugin install https://github.com/obra/superpowers 2>/dev/null || true
+  agy plugin install https://github.com/ayghri/i-have-adhd 2>/dev/null || true
 fi
 
 # OpenCode
