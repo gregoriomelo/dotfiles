@@ -1,25 +1,25 @@
 #!/bin/bash
 # scripts/setup-ai-plugins.sh
-# Automates the installation of AI agent plugins (Superpowers)
+# Automates the installation of AI agent plugins and skills (Superpowers, i-have-adhd, Context7)
 
 set -e
 
-echo "Setting up AI agent plugins..."
+echo "Setting up AI agent plugins and skills..."
 
 # Claude Code
 if command -v claude &> /dev/null; then
   echo "Checking Claude Code plugins..."
-  # Add marketplace if not present
+  # Superpowers marketplace & plugin
   claude plugin marketplace add obra/superpowers-marketplace 2>/dev/null || true
-  # Install/Update superpower plugin
-  claude plugin install superpowers@superpowers-marketplace
-  claude plugin install https://github.com/ayghri/i-have-adhd 2>/dev/null || true
+  claude plugin install superpowers@superpowers-marketplace 2>/dev/null || true
+  # i-have-adhd marketplace & plugin
+  claude plugin marketplace add ayghri/i-have-adhd 2>/dev/null || true
+  claude plugin install i-have-adhd@i-have-adhd 2>/dev/null || true
 fi
 
 # Antigravity CLI (agy)
 if command -v agy &> /dev/null; then
   echo "Checking Antigravity plugins..."
-  # Add marketplace if needed, or just install by URL (agy supports plugin@marketplace or URL)
   agy plugin link obra/superpowers-marketplace https://github.com/obra/superpowers-marketplace 2>/dev/null || true
   agy plugin install superpowers@obra/superpowers-marketplace 2>/dev/null || agy plugin install https://github.com/obra/superpowers 2>/dev/null || true
   agy plugin install https://github.com/ayghri/i-have-adhd 2>/dev/null || true
@@ -27,9 +27,25 @@ fi
 
 # OpenCode
 if command -v opencode &> /dev/null; then
-  echo "Checking OpenCode plugins..."
+  echo "Checking OpenCode plugins & skills..."
   opencode plugin https://github.com/obra/superpowers 2>/dev/null || true
-  opencode plugin https://github.com/ayghri/i-have-adhd 2>/dev/null || true
+  mkdir -p "$HOME/.config/opencode/skills"
+  if [ ! -L "$HOME/.config/opencode/skills" ] && [ ! -d "$HOME/.config/opencode/skills/i-have-adhd" ]; then
+    ln -sf "$HOME/dev/dotfiles/ai/skills/i-have-adhd" "$HOME/.config/opencode/skills/i-have-adhd" 2>/dev/null || true
+  fi
+fi
+
+# Codex
+if command -v codex &> /dev/null; then
+  echo "Checking Codex plugins..."
+  codex plugin marketplace add ayghri/i-have-adhd --ref main 2>/dev/null || true
+  codex plugin add i-have-adhd@i-have-adhd 2>/dev/null || true
+fi
+
+# Gemini CLI
+if command -v gemini &> /dev/null; then
+  echo "Checking Gemini CLI extensions & commands..."
+  gemini extensions install https://github.com/ayghri/i-have-adhd 2>/dev/null || true
 fi
 
 # Context7 (Documentation MCP)
