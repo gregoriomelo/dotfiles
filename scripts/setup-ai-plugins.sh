@@ -32,4 +32,18 @@ if command -v opencode &> /dev/null; then
   opencode plugin https://github.com/ayghri/i-have-adhd 2>/dev/null || true
 fi
 
+# Context7 (Documentation MCP)
+if command -v npx &> /dev/null; then
+  echo "Checking Context7 MCP integrations..."
+  
+  if [ -z "$CONTEXT7_API_KEY" ] && command -v pass-cli &>/dev/null; then
+    export PROTON_PASS_KEY_PROVIDER=fs
+    CONTEXT7_API_KEY="$(pass-cli item view "pass://Personal/Context7/password" 2>/dev/null || true)"
+  fi
+
+  if [ -n "$CONTEXT7_API_KEY" ]; then
+    npx ctx7 setup --claude --cursor --antigravity --opencode --gemini --mcp -y --api-key "$CONTEXT7_API_KEY" 2>/dev/null || true
+  fi
+fi
+
 echo "✅ AI agent plugins synchronized."

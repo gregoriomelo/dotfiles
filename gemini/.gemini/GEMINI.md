@@ -18,3 +18,6 @@
 
 # security
 @./rules/security.md
+
+# context7
+@./rules/context7.md

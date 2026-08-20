@@ -23,6 +23,7 @@ These rules are loaded by the main agents (Claude, Gemini, Pi) for all project t
 - **design.md:** Professional design thinking for visual output.
 - **product.md:** Incremental roadmap and parallelization strategies.
 - **security.md:** Credential leakage prevention and SAST scanning.
+- **context7.md:** Real-time library/API documentation retrieval via Context7 MCP.
 
 ### Agent Skills (ai/skills/)
 On-demand capabilities available to all agents:
@@ -33,3 +34,4 @@ On-demand capabilities available to all agents:
 - **brew-sync:** (new) Maintains the `Brewfile` in sync with installed packages.
 - **health-check:** (new) Runs a suite of validation tests on the environment.
 - **i-have-adhd:** (new) Shapes output for readers with ADHD (action-first, numbered steps, no preamble/recaps).
+- **context7-mcp:** On-demand documentation lookups for frameworks, SDKs, and APIs.

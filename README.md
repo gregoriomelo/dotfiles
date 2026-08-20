@@ -61,14 +61,17 @@ dotfiles/
 │   │   ├── docs.md             # ADRs and task-recorder automation
 │   │   ├── git.md
 │   │   ├── product.md
-│   │   └── testing.md
+│   │   ├── security.md
+│   │   ├── testing.md
+│   │   └── context7.md         # Context7 MCP documentation lookup
 │   └── skills/                 # Shared skill files for all agents
 │       ├── design/             # Design director mode
 │       ├── task-recorder/      # Documentation automation
 │       ├── usage-tracker/      # Resource consumption monitor
 │       ├── alias-sync/         # (new) Zsh/Nushell alias sync
 │       ├── brew-sync/          # (new) Brewfile synchronization
-│       └── health-check/       # (new) Environment validation suite
+│       ├── health-check/       # (new) Environment validation suite
+│       └── context7-mcp/       # On-demand API documentation lookups
 ├── claude/                     # Stow package
 │   └── .claude/
 │       ├── CLAUDE.md           # Global Claude instructions

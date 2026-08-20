@@ -12,8 +12,14 @@ $env.PATH = ($env.PATH | split row (char esep)
 $env.DEV_HOME = '/Users/gregoriomelo/dev'
 $env.DOTFILES_HOME = '/Users/gregoriomelo/dev/dotfiles'
 
+# Proton Pass CLI
+$env.PROTON_PASS_KEY_PROVIDER = 'fs'
+
 # ai
 $env.OPENSPEC_TELEMETRY = '0'
+if ($env.CONTEXT7_API_KEY? | is-empty) {
+    $env.CONTEXT7_API_KEY = (try { pass-cli item view "pass://Personal/Context7/password" | str trim } catch { "" })
+}
 
 # gpg
-$env.GPG_TTY = (tty)
+$env.GPG_TTY = (try { tty } catch { "" })
