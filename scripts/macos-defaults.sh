@@ -28,6 +28,12 @@ defaults write com.apple.dock show-recents -bool false
 # Reasonable icon size (48)
 defaults write com.apple.dock tilesize -int 48
 
+# Only show active running applications
+defaults write com.apple.dock static-only -bool true
+
+# Remove all persistent pinned apps
+defaults write com.apple.dock persistent-apps -array
+
 # Finder
 # Show file extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
