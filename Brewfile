@@ -103,7 +103,7 @@ cask 'font-jetbrains-mono-nerd-font'
 cask 'proton-pass'
 cask 'protonvpn'
 cask 'proton-mail'
-tap 'protonpass/tap'
+tap 'protonpass/tap', trusted: true
 brew 'protonpass/tap/pass-cli'
 
 ###########
