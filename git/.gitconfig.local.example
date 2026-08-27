@@ -1,0 +1,10 @@
+# Local Git Configuration Override Template (~/.gitconfig.local)
+# Copy this file to ~/.gitconfig.local to override machine-specific settings.
+
+[user]
+	# Override your signing key or user info if needed:
+	# signingkey = YOUR_GPG_KEY_ID
+
+[commit]
+	# Temporarily disable GPG signing on a new machine until keys are imported:
+	# gpgsign = false

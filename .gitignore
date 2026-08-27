@@ -20,6 +20,7 @@ claude/.claude/tasks
 claude/.claude/mcp-needs-auth-cache.json
 .opencode/
 git/.gitconfig.*
+!git/.gitconfig.local.example
 
 # Environment & API keys
 .env

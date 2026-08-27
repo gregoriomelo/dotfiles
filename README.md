@@ -21,6 +21,11 @@ This single command:
 5. Applies macOS developer defaults
 6. Installs vim-plug and vim plugins
 
+> [!NOTE]
+> **Fresh Machine Setup Notes:**
+> - **Mac App Store**: Sign into the Mac App Store before running `make setup` if using `mas` apps (e.g. Xcode).
+> - **Git & GPG Signing**: Global git configuration enforces GPG commit signing by default. If your GPG signing keys are not yet imported, copy `git/.gitconfig.local.example` to `~/.gitconfig.local` (or set `commit.gpgsign = false`) to avoid commit failures.
+
 ## Directory Structure
 
 ```
@@ -44,6 +49,7 @@ dotfiles/
 │   └── .zprofile               # Sets Homebrew shell env + DEV_HOME/DOTFILES_HOME
 ├── git/                        # Stow package
 │   ├── .gitconfig
+│   ├── .gitconfig.local.example # Local git override template (~/.gitconfig.local)
 │   └── .config/git/global_ignore
 ├── tmux/                       # Stow package
 │   └── .tmux.conf
@@ -115,6 +121,7 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ~/.zshrc                            → zsh/.zshrc
 ~/.zprofile                         → zsh/.zprofile
 ~/.gitconfig                        → git/.gitconfig
+~/.gitconfig.local.example          → git/.gitconfig.local.example
 ~/.config/git/global_ignore         → git/.config/git/global_ignore
 ~/.tmux.conf                        → tmux/.tmux.conf
 ~/.config/glow/glow.yml             → glow/.config/glow/glow.yml
@@ -224,6 +231,19 @@ See [docs/vim.md](docs/vim.md) for full details.
 | `ds"` | Delete surrounding `"` |
 | `ysiw"` | Wrap word in `"` |
 
+## Git
+
+Global git configuration in `git/.gitconfig` enables GPG commit signing by default (`commit.gpgsign = true`) and includes `~/.gitconfig.local` for machine-specific overrides.
+
+### Fresh Machine Setup
+
+If GPG signing keys are not yet imported on a new machine:
+1. Copy `git/.gitconfig.local.example` to `~/.gitconfig.local`:
+   ```bash
+   cp git/.gitconfig.local.example ~/.gitconfig.local
+   ```
+2. Uncomment `gpgsign = false` under `[commit]` (or configure your signing key under `[user]`) to prevent commit signing failures until keys are imported.
+
 ## Project AI Agents
 
 This repository includes a project-scoped AI agent configuration that provides a specialized experience for any coding agent (Claude, Gemini, Pi) working on these dotfiles.
@@ -274,7 +294,10 @@ Check everything is set up correctly:
 
 ```bash
 # All symlinks should point to ~/dev/dotfiles
-ls -la ~/.aliases ~/.zshrc ~/.zprofile ~/.gitconfig ~/.tmux.conf ~/.config/git/global_ignore
+ls -la ~/.aliases ~/.zshrc ~/.zprofile ~/.gitconfig ~/.gitconfig.local.example ~/.tmux.conf ~/.config/git/global_ignore
+
+# Check git configuration (and optional signing override)
+git config --get commit.gpgsign
 
 # Homebrew should be accessible
 zsh -l -c 'which brew'

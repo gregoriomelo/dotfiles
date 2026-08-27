@@ -2,6 +2,7 @@
 # tooling #
 ###########
 brew 'stow'
+brew 'mas'
 brew 'vim'
 brew 'git'
 brew 'rg'
