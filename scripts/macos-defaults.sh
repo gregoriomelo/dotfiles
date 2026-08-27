@@ -76,10 +76,10 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Keyboard remapping
-# CapsLock → Left Control
-hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}'
+# CapsLock → Escape
+hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}'
 
-# Persist CapsLock → Left Control via launchd (survives reboots)
+# Persist CapsLock → Escape via launchd (survives reboots)
 mkdir -p "$HOME/Library/LaunchAgents"
 PLIST="$HOME/Library/LaunchAgents/com.local.keyremap.plist"
 cat > "$PLIST" <<'EOF'
@@ -94,7 +94,7 @@ cat > "$PLIST" <<'EOF'
         <string>/usr/bin/hidutil</string>
         <string>property</string>
         <string>--set</string>
-        <string>{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}</string>
+        <string>{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
