@@ -27,6 +27,7 @@ This single command:
 dotfiles/
 ├── Makefile                    # Entry point; run `make setup`
 ├── Brewfile                    # Homebrew packages (not stowed)
+├── .env.example                # Initial API keys template (not stowed)
 ├── AGENTS.md                   # Project-scoped AI agent manifest (new)
 ├── CLAUDE.md                   # Project-scoped Claude Code instructions (new)
 ├── .agents/                    # Project-scoped subagent definitions
