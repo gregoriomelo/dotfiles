@@ -80,6 +80,7 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}'
 
 # Persist CapsLock → Left Control via launchd (survives reboots)
+mkdir -p "$HOME/Library/LaunchAgents"
 PLIST="$HOME/Library/LaunchAgents/com.local.keyremap.plist"
 cat > "$PLIST" <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
