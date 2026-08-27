@@ -10,7 +10,7 @@ echo "🔍 Running Health Check..."
 echo ""
 echo "[1/4] Checking Symlink Integrity..."
 # We search for broken symlinks in the home directory that point to dev/dotfiles
-BROKEN_LINKS=$(find "$HOME" -maxdepth 3 -type l -exec sh -c 'for x; do [ ! -e "$x" ] && readlink "$x" | grep -q "dev/dotfiles" && echo "$x"; done' _ {} +)
+BROKEN_LINKS=$(find "$HOME" -maxdepth 3 -type l -exec sh -c 'for x; do [ ! -e "$x" ] && readlink "$x" | grep -q "dev/dotfiles" && echo "$x"; done' _ {} + 2>/dev/null)
 if [ -n "$BROKEN_LINKS" ]; then
     echo "❌ Found broken symlinks:"
     echo "$BROKEN_LINKS"
