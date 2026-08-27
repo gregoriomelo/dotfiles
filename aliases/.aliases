@@ -8,7 +8,7 @@ alias dev='cd $DEV_HOME'
 alias dotfiles='cd $DOTFILES_HOME'
 
 function http_server {
-  python -m SimpleHTTPServer $1 > /dev/null 2>&1
+  python3 -m http.server ${1:-8000} > /dev/null 2>&1
 }
 
 # git

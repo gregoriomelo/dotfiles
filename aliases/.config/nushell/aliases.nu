@@ -47,8 +47,8 @@ def brewup [] {
 }
 
 # http server
-def http_server [port?: int] {
-    python -m SimpleHTTPServer $port
+def http_server [port: int = 8000] {
+    python3 -m http.server $port
 }
 
 # tmux

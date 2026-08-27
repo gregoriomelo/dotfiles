@@ -5,12 +5,12 @@ $env.HOMEBREW_REPOSITORY = '/opt/homebrew'
 $env.PATH = ($env.PATH | split row (char esep)
     | prepend '/opt/homebrew/sbin'
     | prepend '/opt/homebrew/bin'
-    | prepend '/Users/gregoriomelo/.opencode/bin'
+    | prepend ($env.HOME | path join '.opencode' 'bin')
     | uniq)
 
 # Custom dirs referenced in aliases
-$env.DEV_HOME = '/Users/gregoriomelo/dev'
-$env.DOTFILES_HOME = '/Users/gregoriomelo/dev/dotfiles'
+$env.DEV_HOME = ($env.HOME | path join 'dev')
+$env.DOTFILES_HOME = ($env.HOME | path join 'dev' 'dotfiles')
 
 # Proton Pass CLI
 $env.PROTON_PASS_KEY_PROVIDER = 'fs'
