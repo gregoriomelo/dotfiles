@@ -10,10 +10,17 @@ On a fresh Mac:
 
 ```bash
 cd ~/dev/dotfiles
+
+# 1. Run interactive pre-flight checks (Xcode CLT, sudo, Mac App Store, GPG, .env, SSH)
+make prepare
+
+# 2. Run bootstrap installation
 make setup
 ```
 
-This single command:
+`make prepare` guides you through pre-flight requirements: verifies Xcode Command Line Tools and sudo, checks Mac App Store sign-in status, offers to generate `~/.gitconfig.local` if your GPG key is not yet present, helps initialize `.env`, and tests GitHub SSH connectivity. If all checks pass, it offers to run `make setup` immediately.
+
+`make setup`:
 1. Installs Homebrew (if missing)
 2. Runs `brew bundle` to install all packages from Brewfile
 3. Uses Stow to symlink configs to `$HOME`
@@ -24,7 +31,7 @@ This single command:
 > [!NOTE]
 > **Fresh Machine Setup Notes:**
 > - **Mac App Store**: Sign into the Mac App Store before running `make setup` if using `mas` apps (e.g. Xcode).
-> - **Git & GPG Signing**: Global git configuration enforces GPG commit signing by default. If your GPG signing keys are not yet imported, copy `git/.gitconfig.local.example` to `~/.gitconfig.local` (or set `commit.gpgsign = false`) to avoid commit failures.
+> - **Git & GPG Signing**: Global git configuration enforces GPG commit signing by default. If your GPG signing keys are not yet imported, copy `git/.gitconfig.local.example` to `~/.gitconfig.local` (or run `make prepare` to generate it with `commit.gpgsign = false`) to avoid commit failures.
 
 ## Directory Structure
 
@@ -39,6 +46,7 @@ dotfiles/
 │   ├── steward.md              # Dotfiles maintenance subagent
 │   └── macos.md                # (new) macOS settings subagent
 ├── scripts/
+│   ├── prepare.sh              # Pre-flight onboarding checklist
 │   └── macos-defaults.sh       # macOS system preferences
 ├── aliases/                    # Stow package
 │   ├── .aliases                # Shell aliases (zsh format)
@@ -99,6 +107,7 @@ dotfiles/
 
 ## Make Targets
 
+- **`make prepare`** — Interactive pre-flight checklist for fresh machine onboarding (Xcode CLT, sudo, Mac App Store, GPG, `.env`, GitHub SSH)
 - **`make setup`** (default) — Runs all targets in order: `homebrew`, `brew`, `stow`, `tpm`, `macos`, `vim-init`
 - **`make homebrew`** — Installs Homebrew if missing (idempotent)
 - **`make brew`** — Runs `brew bundle --file=Brewfile` (requires homebrew)
@@ -327,6 +336,7 @@ dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
 
 - **README.md** (this file) — Setup and usage
 - **Makefile** — Automation targets
+- **scripts/prepare.sh** — Pre-flight onboarding checklist
 - **scripts/macos-defaults.sh** — System preferences configuration
 - **docs/vim.md** — Vim plugin reference and keybindings
 - **docs/tmux.md** — Full tmux keybinding and plugin reference
@@ -339,5 +349,6 @@ dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
   - [2026-02-18: Claude Code Config](docs/tasks/2026-02-18-claude-code-config.md)
   - [2026-02-22: Starship Config](docs/tasks/2026-02-22-starship-config.md)
   - [2026-03-17: Vim Plugin Setup](docs/tasks/2026-03-17-vim-plugins.md)
+  - [2026-08-27: Add Make Prepare Target](docs/tasks/2026-08-27-add-make-prepare-target.md)
 
 See also: `claude/.claude/CLAUDE.md` for global Claude Code instructions.
