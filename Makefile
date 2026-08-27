@@ -1,4 +1,5 @@
 STOW_PACKAGES := ai aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi task atuin
+export PATH := /opt/homebrew/bin:/usr/local/bin:$(PATH)
 
 .PHONY: setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell gpg-init
 
@@ -19,6 +20,7 @@ brew: homebrew
 
 clean-stow-conflicts:
 	@echo "Removing conflicting files in $$HOME..."
+	@mkdir -p "$$HOME/.gnupg" "$$HOME/.claude" "$$HOME/.gemini"
 	@for pkg in $(STOW_PACKAGES); do \
 		find $$pkg -type f | while read f; do \
 			rel="$${f#$$pkg/}"; \
@@ -81,6 +83,7 @@ nushell-init: stow
 	@echo "✓ Starship nushell cache written"
 	@echo "Linking macOS nushell config dir to stow-managed ~/.config/nushell..."
 	@NUDIR="$$HOME/Library/Application Support/nushell"; \
+	    mkdir -p "$$NUDIR"; \
 	    rm -f "$$NUDIR/config.nu" "$$NUDIR/env.nu"; \
 	    ln -sf "$$HOME/.config/nushell/config.nu" "$$NUDIR/config.nu"; \
 	    ln -sf "$$HOME/.config/nushell/env.nu" "$$NUDIR/env.nu"
@@ -155,6 +158,7 @@ ai-plugins:
 
 gpg-init: stow
 	@echo "Configuring GPG agent..."
-	@chmod 700 $$HOME/.gnupg
+	@mkdir -p "$$HOME/.gnupg"
+	@chmod 700 "$$HOME/.gnupg"
 	@gpgconf --kill gpg-agent
 	@echo "✓ GPG agent configured with pinentry-mac"
