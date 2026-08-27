@@ -39,15 +39,17 @@ aliases/
 **When adding a new alias, edit both files.** This is the single directory to look at for all aliases, regardless of shell.
 
 ## First-time Setup
-
-After `make stow`:
-
+ 
+`make setup` automatically runs `make nushell-init` (generating `~/.cache/starship/init.nu` and linking the macOS config directory).
+ 
+To register Nushell as your default login shell:
+ 
 ```bash
-make nushell-init    # generates ~/.cache/starship/init.nu + macOS config dir links
 make default-shell   # registers nu in /etc/shells + chsh (requires sudo)
 ```
-
-Restart the terminal after `make default-shell`.
+ 
+> [!IMPORTANT]
+> Fully quit Ghostty or your terminal emulator (**Cmd+Q**) and relaunch. Opening a new window with `Cmd+N` inside an already-running terminal will continue using the older cached login shell.
 
 ## Verification
 

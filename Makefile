@@ -1,9 +1,9 @@
 STOW_PACKAGES := ai aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi task atuin
 export PATH := /opt/homebrew/bin:/usr/local/bin:$(PATH)
 
-.PHONY: prepare setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell gpg-init
+.PHONY: prepare setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell gpg-init post-setup health-check
 
-setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins gpg-init
+setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins gpg-init post-setup
 	@echo "✓ Bootstrap complete"
 
 prepare:
@@ -165,3 +165,10 @@ gpg-init: stow
 	@chmod 700 "$$HOME/.gnupg"
 	@gpgconf --kill gpg-agent
 	@echo "✓ GPG agent configured with pinentry-mac"
+
+post-setup:
+	@bash scripts/post-setup.sh
+
+health-check:
+	@bash scripts/health-check.sh
+

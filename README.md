@@ -16,8 +16,12 @@ cd dotfiles
 # 1. Run interactive pre-flight checks (Xcode CLT, sudo, Mac App Store, GPG, .env, SSH)
 make prepare
 
-# 2. Run bootstrap installation
+# 2. Run bootstrap installation (stows dotfiles and prints post-setup next steps)
 make setup
+
+# 3. Complete recommended post-setup actions (default shell, daemons, logins)
+make default-shell     # Set Nushell as default login shell (requires sudo)
+# Or run 'make post-setup' at any time to see the full checklist
 ```
 
 `make prepare` guides you through pre-flight requirements: verifies Xcode Command Line Tools and sudo, checks Mac App Store sign-in status, offers to generate `~/.gitconfig.local` if your GPG key is not yet present, helps initialize `.env`, and tests GitHub SSH connectivity. If all checks pass, it offers to run `make setup` immediately.
@@ -26,14 +30,78 @@ make setup
 1. Installs Homebrew (if missing)
 2. Runs `brew bundle` to install all packages from Brewfile
 3. Uses Stow to symlink configs to `$HOME`
-4. Clones TPM (Tmux Plugin Manager)
+4. Clones TPM (Tmux Plugin Manager) and installs plugins
 5. Applies macOS developer defaults
-6. Installs vim-plug and vim plugins
+6. Initializes subpackages (`nushell-init`, `ghostty-init`, `vim-init`, `rtk-init`, `task-init`, `ai-plugins`, `gpg-init`)
+7. Displays the interactive post-setup next steps guide (`make post-setup`)
 
 > [!NOTE]
 > **Fresh Machine Setup Notes:**
 > - **Mac App Store**: Sign into the Mac App Store before running `make setup` if using `mas` apps (e.g. Xcode).
 > - **Git & GPG Signing**: Global git configuration enforces GPG commit signing by default. If your GPG signing keys are not yet imported, copy `git/.gitconfig.local.example` to `~/.gitconfig.local` (or run `make prepare` to generate it with `commit.gpgsign = false`) to avoid commit failures.
+> - **Terminal Relaunch**: After running `make default-shell`, fully quit Ghostty or Terminal.app (**Cmd+Q**) and relaunch. New windows (`Cmd+N`) in an already running terminal process will continue using the previously cached login shell.
+
+## Post-Setup Guide (Next Steps)
+
+After `make setup` completes, an automated check runs via `make post-setup`. You can re-run this checklist at any time:
+
+```bash
+make post-setup
+```
+
+### 1. Default Shell (Nushell)
+Nushell is the default interactive shell in this dotfiles repository, but modifying macOS login shells requires root permissions and user authentication:
+```bash
+make default-shell
+```
+> [!IMPORTANT]
+> **Quit Ghostty / Terminal (`Cmd+Q`):** Opening a new window (`Cmd+N`) inside an already running terminal instance will reuse the older cached session. You must completely quit (`Cmd+Q`) and reopen Ghostty or Terminal.app for Nushell to take effect.
+
+### 2. Network & Daemon Services
+- **Tailscale:**
+  Start the background daemon and authenticate with your tailnet:
+  ```bash
+  sudo brew services start tailscale
+  sudo tailscale up
+  ```
+- **Docker / Colima:**
+  Start the Colima container runtime:
+  ```bash
+  colima start
+  # Or configure it to start at login:
+  brew services start colima
+  ```
+
+### 3. CLI Authentication & History Sync
+- **GitHub CLI (`gh`):** Authenticate with your GitHub account:
+  ```bash
+  gh auth login
+  ```
+- **Proton Pass CLI (`pass-cli`):** Log into your Proton account (required by `env.nu` to retrieve secrets like `CONTEXT7_API_KEY`):
+  ```bash
+  pass-cli login
+  ```
+- **Atuin:** If syncing shell history across devices, log in or register:
+  ```bash
+  atuin login    # or: atuin register
+  ```
+- **AI Coding Agents:** Authenticate your AI tools as needed:
+  ```bash
+  claude login
+  ```
+
+### 4. macOS App Permissions (System Settings)
+Several GUI tools installed via Homebrew require system permissions under **System Settings > Privacy & Security**:
+- **Alfred:**
+  - Grant **Accessibility** and **Full Disk Access**.
+  - *(Optional)* In macOS Keyboard Settings, disable or remap the default Spotlight shortcut (`Cmd+Space`) so Alfred can use it.
+- **Magnet:**
+  - Grant **Accessibility** to enable window snapping keybindings.
+- **f.lux:**
+  - Grant **Location Services** so screen color temperatures adjust automatically with sunrise/sunset.
+
+### 5. System Reboot
+Log out or restart macOS so all system preferences from `scripts/macos-defaults.sh` (keyboard repeat rate, dock auto-hide, Finder options) fully apply across all system processes.
 
 ## Directory Structure
 
@@ -110,14 +178,16 @@ dotfiles/
 ## Make Targets
 
 - **`make prepare`** — Interactive pre-flight checklist for fresh machine onboarding (Xcode CLT, sudo, Mac App Store, GPG, `.env`, GitHub SSH)
-- **`make setup`** (default) — Runs all targets in order: `homebrew`, `brew`, `stow`, `tpm`, `macos`, `vim-init`
+- **`make setup`** (default) — Runs all bootstrap targets and displays the post-setup checklist
+- **`make post-setup`** — Interactive status check & guide for recommended next steps (shell, Tailscale, auth, Docker, macOS permissions)
+- **`make health-check`** — Validates environment health (symlinks, Homebrew bundle, Nushell, git status)
 - **`make homebrew`** — Installs Homebrew if missing (idempotent)
 - **`make brew`** — Runs `brew bundle --file=Brewfile` (requires homebrew)
 - **`make stow`** — Symlinks packages using GNU Stow (requires stow from brew)
 - **`make tpm`** — Clones TPM + catppuccin/tmux, then installs all plugins (idempotent)
 - **`make macos`** — Applies macOS defaults and restarts Dock/Finder
 - **`make vim-init`** — Installs vim-plug and all vim plugins (idempotent, requires stow)
-- **`make nushell-init`** — Generates `~/.cache/starship/init.nu` (one-time, run after `make stow`)
+- **`make nushell-init`** — Generates `~/.cache/starship/init.nu` and links macOS Nushell config dir (included in `make setup`)
 - **`make default-shell`** — Registers nushell in `/etc/shells` and sets it as the login shell (requires sudo)
 
 **All targets are idempotent** — safe to run multiple times.

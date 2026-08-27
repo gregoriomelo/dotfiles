@@ -42,6 +42,13 @@ else
     ERRORS=$((ERRORS+1))
 fi
 
+USER_SHELL=$(dscl . -read "$HOME" UserShell 2>/dev/null | awk '{print $2}')
+if grep -q "/opt/homebrew/bin/nu" /etc/shells 2>/dev/null && [ "$USER_SHELL" = "/opt/homebrew/bin/nu" ]; then
+    echo "✅ Nushell is registered in /etc/shells and set as login shell."
+else
+    echo "⚠️ Nushell is not set as your login shell. Run 'make default-shell' to configure."
+fi
+
 echo ""
 echo "[4/4] Checking Git Status..."
 cd "$DOTFILES_DIR" || exit
