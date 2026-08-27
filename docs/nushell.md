@@ -66,5 +66,5 @@ nu -l -c '$env.DEV_HOME'
 nu -l -c '$env.PATH | str join (char nl)' | grep homebrew
 
 # Check default shell (after make default-shell + terminal restart)
-dscl . -read /Users/gregoriomelo UserShell
+dscl . -read "$HOME" UserShell
 ```

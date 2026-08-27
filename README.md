@@ -9,7 +9,9 @@ This dotfiles repo uses **GNU Stow** to manage symlinks and a **Makefile** to au
 On a fresh Mac:
 
 ```bash
-cd ~/dev/dotfiles
+mkdir -p ~/dev && cd ~/dev
+git clone git@github.com:gregoriomelo/dotfiles.git dotfiles
+cd dotfiles
 
 # 1. Run interactive pre-flight checks (Xcode CLT, sudo, Mac App Store, GPG, .env, SSH)
 make prepare
@@ -329,7 +331,7 @@ nu -c "$env.DEV_HOME"
 nu -c "$env.PATH | str join (char nl)" | grep homebrew
 
 # Default shell changed (after make default-shell + terminal restart)
-dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
+dscl . -read "$HOME" UserShell   # should show /opt/homebrew/bin/nu
 ```
 
 ## Documentation
@@ -349,6 +351,8 @@ dscl . -read /Users/gregoriomelo UserShell   # should show /opt/homebrew/bin/nu
   - [2026-02-18: Claude Code Config](docs/tasks/2026-02-18-claude-code-config.md)
   - [2026-02-22: Starship Config](docs/tasks/2026-02-22-starship-config.md)
   - [2026-03-17: Vim Plugin Setup](docs/tasks/2026-03-17-vim-plugins.md)
+  - [2026-08-27: Fresh Machine Bootstrap Evaluation and Fixes](docs/tasks/2026-08-27-fresh-machine-bootstrap-evaluation-and-fixes.md)
+  - [2026-08-27: Mas in Brewfile & Gitconfig Local Template](docs/tasks/2026-08-27-mas-in-brewfile-and-gitconfig-local-template.md)
   - [2026-08-27: Add Make Prepare Target](docs/tasks/2026-08-27-add-make-prepare-target.md)
 
 See also: `claude/.claude/CLAUDE.md` for global Claude Code instructions.
