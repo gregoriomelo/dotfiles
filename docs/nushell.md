@@ -6,8 +6,9 @@ Nushell (`nu`) is the default interactive shell. See [README.md](../README.md#nu
 
 | File | Purpose |
 |---|---|
-| `nushell/.config/nushell/env.nu` | PATH, Homebrew env, DEV_HOME, DOTFILES_HOME |
-| `nushell/.config/nushell/config.nu` | Starship prompt, direnv hook, sources aliases |
+| `nushell/.config/nushell/env.nu` | PATH, Homebrew env, DEV_HOME, DOTFILES_HOME, CONTEXT7_API_KEY |
+| `nushell/.config/nushell/config.nu` | Starship prompt, direnv hook, sources aliases and atuin |
+| `nushell/.config/nushell/atuin.nu` | Atuin shell history integration, keybindings, and hooks |
 | `aliases/.config/nushell/aliases.nu` | All alias/function definitions |
 
 Nushell on macOS uses `~/Library/Application Support/nushell/` as its config dir. `make nushell-init` creates symlinks from there to the stow-managed `~/.config/nushell/` files.
