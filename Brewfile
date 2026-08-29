@@ -62,6 +62,7 @@ brew 'colima'
 ############
 # browsers #
 ############
+cask 'duckduckgo'
 cask 'firefox'
 cask 'google-chrome'
 
