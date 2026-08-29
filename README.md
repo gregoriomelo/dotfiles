@@ -225,6 +225,7 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 **Keyboard:**
 - Fast key repeat (2) & short initial delay (15ms)
 - Disables press-and-hold, auto-correct, auto-capitalize, smart quotes/dashes
+- Enables keyboard navigation (move focus between controls with Tab)
 - Remaps CapsLock to Escape (via `hidutil` and launchd persistence)
 
 **Dock:**

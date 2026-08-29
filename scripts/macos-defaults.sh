@@ -15,6 +15,9 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
+# Enable keyboard navigation (Tab between all controls)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
+
 # Dock
 # Auto-hide
 defaults write com.apple.dock autohide -bool true
