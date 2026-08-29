@@ -80,6 +80,7 @@ cask 'caffeine'
 cask 'alfred'
 mas 'Magnet', id: 441258766
 mas 'The Unarchiver', id: 425424353
+mas 'Tailscale', id: 1475387142
 cask 'notchnook'
 
 ##########
@@ -140,7 +141,6 @@ cask 'figma'
 #######
 brew 'gh'
 brew 'forgejo-cli'
-brew 'tailscale'
 
 ############
 # blogging #
