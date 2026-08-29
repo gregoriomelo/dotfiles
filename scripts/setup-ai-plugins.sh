@@ -77,8 +77,10 @@ if command -v npx &> /dev/null; then
   fi
 
   # 3. Setup Context7 if key is available; otherwise skip gracefully without errors
+  # Cursor (~/.cursor/mcp.json) and OpenCode (~/.config/opencode/opencode.jsonc) are managed
+  # via stow using dynamic environment variable interpolation to prevent credential leakage.
   if [ -n "$CONTEXT7_API_KEY" ]; then
-    npx ctx7 setup --claude --cursor --antigravity --opencode --gemini --mcp -y --api-key "$CONTEXT7_API_KEY" 2>/dev/null || true
+    npx ctx7 setup --claude --antigravity --gemini --mcp -y --api-key "$CONTEXT7_API_KEY" 2>/dev/null || true
   else
     echo "⚠️ CONTEXT7_API_KEY not found in environment, .env, or pass-cli. Skipping Context7 setup."
   fi
