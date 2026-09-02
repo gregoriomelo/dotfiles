@@ -224,17 +224,22 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 
 **Keyboard:**
 - Fast key repeat (2) & short initial delay (15ms)
-- Disables press-and-hold, auto-correct, auto-capitalize, smart quotes/dashes
+- Disables press-and-hold, auto-correct, auto-capitalize, smart quotes/dashes, inline predictions
 - Enables keyboard navigation (move focus between controls with Tab)
 - Remaps CapsLock to Escape (via `hidutil` and launchd persistence)
 
-**Dock:**
+**Dock, Spaces & Window Manager:**
 - Auto-hide with zero delay
 - Icon size 48, no recent apps
+- Don't automatically rearrange Spaces based on most recent use
+- Group windows by application in Mission Control
+- Click wallpaper to reveal desktop only in Stage Manager (disables accidental window hiding)
 
 **Finder:**
 - Shows file extensions, hidden files, path bar, status bar
 - List view, folders first, no .DS_Store on network/USB volumes
+- Search current folder by default
+- Disable extension change warning
 
 **Trackpad:**
 - Tap to click enabled
@@ -242,9 +247,9 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 **Screenshots:**
 - Save to `~/Screenshots` as PNG without shadow
 
-**Misc:**
-- Expanded save/print panels
-- Disabled quarantine dialog
+**System & Utilities:**
+- TextEdit defaults to plain text mode
+- Activity Monitor shows all processes sorted by CPU usage
 
 ## Tmux Configuration
 

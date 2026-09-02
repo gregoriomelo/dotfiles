@@ -9,11 +9,12 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # Disable press-and-hold
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Disable auto-correct, capitalize, smart quotes
+# Disable auto-correct, capitalize, smart quotes, inline predictions
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticInlinePredictionEnabled -bool false
 
 # Enable keyboard navigation (Tab between all controls)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
@@ -60,6 +61,12 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
+# Search current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Disable file extension change warning
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
 # Trackpad
 # Tap to click (built-in trackpad, Bluetooth trackpad, and current host)
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
@@ -76,15 +83,25 @@ defaults write com.apple.screencapture type -string "png"
 # No shadow on screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
 
-# Misc
-# Expand save/print panels
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+# Mission Control & Spaces
+# Don't automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
 
-# Disable quarantine warning dialog
-defaults write com.apple.LaunchServices LSQuarantine -bool false
+# Group windows by application in Mission Control
+defaults write com.apple.dock expose-group-apps -bool true
+
+# Click wallpaper to reveal desktop only in Stage Manager (prevent accidental clicks)
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+# TextEdit
+# Use plain text mode by default
+defaults write com.apple.TextEdit RichText -int 0
+
+# Activity Monitor
+# Show all processes and sort by CPU usage
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 # Keyboard remapping
 # CapsLock → Escape
