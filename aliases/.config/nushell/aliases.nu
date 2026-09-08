@@ -54,3 +54,7 @@ def http_server [port: int = 8000] {
 # tmux
 alias t = tmux
 alias ta = tmux attach -t
+
+# agy
+alias agyc = agy --dangerously-skip-permissions -c
+

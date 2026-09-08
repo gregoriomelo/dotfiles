@@ -35,3 +35,6 @@ alias brewup='brew update; brew upgrade; brew cleanup --prune=all'
 # tmux
 alias t=tmux
 alias ta='tmux attach -t'
+
+# agy
+alias agyc="agy --dangerously-skip-permissions -c"
