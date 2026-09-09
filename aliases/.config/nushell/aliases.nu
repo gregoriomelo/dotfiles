@@ -56,5 +56,8 @@ alias t = tmux
 alias ta = tmux attach -t
 
 # agy
-alias agyc = agy --dangerously-skip-permissions -c
+alias agyc = agy -c
+alias agyd = agy --dangerously-skip-permissions
+
+
 
