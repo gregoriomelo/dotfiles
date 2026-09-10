@@ -86,4 +86,10 @@ if command -v npx &> /dev/null; then
   fi
 fi
 
+# Excalidraw Diagram Renderer (Playwright & Chromium)
+if command -v uv &> /dev/null && [ -d "$DOTFILES_DIR/ai/skills/excalidraw-diagram/references" ]; then
+  echo "Checking Excalidraw diagram renderer dependencies..."
+  (cd "$DOTFILES_DIR/ai/skills/excalidraw-diagram/references" && uv sync --quiet 2>/dev/null && uv run playwright install chromium 2>/dev/null || true)
+fi
+
 echo "✅ AI agent plugins synchronized."

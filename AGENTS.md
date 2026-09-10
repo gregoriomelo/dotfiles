@@ -35,3 +35,4 @@ On-demand capabilities available to all agents:
 - **health-check:** (new) Runs a suite of validation tests on the environment.
 - **i-have-adhd:** (new) Shapes output for readers with ADHD (action-first, numbered steps, no preamble/recaps).
 - **context7-mcp:** On-demand documentation lookups for frameworks, SDKs, and APIs.
+- **excalidraw-diagram:** Generates visually arguing Excalidraw diagrams (.excalidraw) and validates layouts via headless Chromium export.

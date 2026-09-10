@@ -38,6 +38,7 @@ brew 'node'
 
 # python
 brew 'python3'
+brew 'uv'
 
 # ruby
 brew 'rbenv'

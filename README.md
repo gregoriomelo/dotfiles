@@ -156,7 +156,8 @@ dotfiles/
 │       ├── alias-sync/         # (new) Zsh/Nushell alias sync
 │       ├── brew-sync/          # (new) Brewfile synchronization
 │       ├── health-check/       # (new) Environment validation suite
-│       └── context7-mcp/       # On-demand API documentation lookups
+│       ├── context7-mcp/       # On-demand API documentation lookups
+│       └── excalidraw-diagram/ # Visual diagram generator & validator
 ├── claude/                     # Stow package
 │   └── .claude/
 │       ├── CLAUDE.md           # Global Claude instructions
@@ -344,6 +345,7 @@ This repository includes a project-scoped AI agent configuration that provides a
 - **`@alias-sync` skill**: (new) Ensures shell aliases are identical in Zsh and Nushell.
 - **`@brew-sync` skill**: (new) Keeps the `Brewfile` in sync with your machine.
 - **`@health-check` skill**: (new) Runs a suite of validation tests to ensure your environment is healthy.
+- **`@excalidraw-diagram` skill**: (new) Generates visual diagrams in `.excalidraw` JSON and validates layouts with Playwright headless Chromium.
 
 To use these features, simply interact with your agent as usual while in this directory. You can explicitly call subagents (e.g., `@steward fix the Makefile` or `@macos show hidden files`) or invoke skills (e.g., `"Record this task"` or `"Check my environment health"`).
 
