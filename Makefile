@@ -23,7 +23,7 @@ brew: homebrew
 
 clean-stow-conflicts:
 	@echo "Removing conflicting files in $$HOME..."
-	@mkdir -p "$$HOME/.gnupg" "$$HOME/.claude" "$$HOME/.gemini"
+	@mkdir -p "$$HOME/.gnupg" "$$HOME/.claude" "$$HOME/.gemini" "$$HOME/.agents"
 	@for pkg in $(STOW_PACKAGES); do \
 		find $$pkg -type f | while read f; do \
 			rel="$${f#$$pkg/}"; \
@@ -44,6 +44,32 @@ clean-stow-conflicts:
 				continue; \
 			fi; \
 			if [ -e "$$target" ] || [ -L "$$target" ]; then \
+				echo "  removing $$target"; \
+				rm -f "$$target"; \
+			fi; \
+		done; \
+		find $$pkg -type l | while read l; do \
+			rel="$${l#$$pkg/}"; \
+			target="$$HOME/$$rel"; \
+			if [ -L "$$target" ] && readlink "$$target" | grep -q "dev/dotfiles"; then \
+				continue; \
+			fi; \
+			dir="$$HOME"; \
+			skip=false; \
+			for part in $$(echo "$$rel" | tr '/' ' '); do \
+				dir="$$dir/$$part"; \
+				if [ -L "$$dir" ] && readlink "$$dir" | grep -q "dev/dotfiles"; then \
+					skip=true; \
+					break; \
+				fi; \
+			done; \
+			if [ "$$skip" = true ]; then \
+				continue; \
+			fi; \
+			if [ -d "$$target" ] && [ ! -L "$$target" ]; then \
+				echo "  removing conflicting directory $$target"; \
+				rm -rf "$$target"; \
+			elif [ -e "$$target" ] || [ -L "$$target" ]; then \
 				echo "  removing $$target"; \
 				rm -f "$$target"; \
 			fi; \

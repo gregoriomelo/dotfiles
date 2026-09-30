@@ -45,6 +45,14 @@ if ($env.CONTEXT7_API_KEY? | is-empty) {
         let res = (do { pass-cli item view "pass://Personal/Context7/password" } | complete)
         if $res.exit_code == 0 {
             $env.CONTEXT7_API_KEY = ($res.stdout | str trim)
+            if ($env.CONTEXT7_API_KEY | is-not-empty) {
+                try {
+                    let target_env = ($env.DOTFILES_HOME? | default ($env.HOME | path join 'dev' 'dotfiles') | path join '.env')
+                    if not ($target_env | path exists) {
+                        $"CONTEXT7_API_KEY=\"($env.CONTEXT7_API_KEY)\"\n" | save -f $target_env
+                    }
+                }
+            }
         } else {
             $env.CONTEXT7_API_KEY = ""
         }
