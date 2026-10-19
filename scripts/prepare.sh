@@ -45,11 +45,21 @@ echo -e "${BOLD}=====================================================${RESET}"
 echo -e "${BOLD}       DOTFILES ONBOARDING PRE-FLIGHT CHECK          ${RESET}"
 echo -e "${BOLD}=====================================================${RESET}"
 
-# 1. Xcode Command Line Tools
+# 1. Xcode Command Line Tools & License
 echo -e "\n${BOLD}[1/6] Checking Xcode Command Line Tools...${RESET}"
 if xcode-select -p >/dev/null 2>&1; then
     CLT_PATH=$(xcode-select -p 2>/dev/null)
     echo -e "  ${GREEN}✅ Installed:${RESET} ${CLT_PATH}"
+    if [ -d "/Applications/Xcode.app" ] && command -v xcodebuild >/dev/null 2>&1; then
+        if ! xcodebuild -checkFirstLaunchStatus >/dev/null 2>&1; then
+            echo -e "  ${YELLOW}⚠️ Xcode license / first-launch tasks not yet completed.${RESET}"
+            if is_interactive && prompt_confirm "     Run 'sudo xcodebuild -license accept' now? [Y/n]"; then
+                sudo xcodebuild -license accept
+                sudo xcodebuild -runFirstLaunch || true
+                echo -e "     ${GREEN}✅ Xcode license accepted.${RESET}"
+            fi
+        fi
+    fi
 else
     echo -e "  ${RED}❌ Xcode Command Line Tools not found.${RESET}"
     if is_interactive && prompt_confirm "     Run 'xcode-select --install' now? [Y/n]"; then

@@ -1,9 +1,9 @@
 STOW_PACKAGES := ai aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi task atuin
 export PATH := /opt/homebrew/bin:/usr/local/bin:$(PATH)
 
-.PHONY: prepare setup homebrew brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell gpg-init post-setup health-check
+.PHONY: prepare setup homebrew xcode-license brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell gpg-init post-setup health-check
 
-setup: homebrew brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins gpg-init post-setup
+setup: homebrew xcode-license brew stow tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins gpg-init post-setup
 	@echo "✓ Bootstrap complete"
 
 prepare:
@@ -18,10 +18,35 @@ homebrew:
 		echo "✓ Homebrew already installed"; \
 	fi
 
-brew: homebrew
+xcode-license:
+	@if [ -d "/Applications/Xcode.app" ] && command -v xcodebuild &> /dev/null; then \
+		if ! xcodebuild -checkFirstLaunchStatus &> /dev/null; then \
+			echo "Accepting Xcode license and running first-launch tasks..."; \
+			sudo xcodebuild -license accept; \
+			sudo xcodebuild -runFirstLaunch || true; \
+		else \
+			echo "✓ Xcode license already accepted"; \
+		fi; \
+	fi
+
+brew: homebrew xcode-license
 	@echo "Installing packages from Brewfile..."
 	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
-	brew bundle --file=Brewfile
+	if ! brew bundle --file=Brewfile; then \
+		if [ -d "/Applications/Xcode.app" ] && command -v xcodebuild &> /dev/null && ! xcodebuild -checkFirstLaunchStatus &> /dev/null; then \
+			echo "Xcode was just installed via mas; accepting Xcode license and retrying brew bundle..."; \
+			sudo xcodebuild -license accept; \
+			sudo xcodebuild -runFirstLaunch || true; \
+			brew bundle --file=Brewfile; \
+		else \
+			exit 1; \
+		fi; \
+	fi
+	@if [ -d "/Applications/Xcode.app" ] && command -v xcodebuild &> /dev/null && ! xcodebuild -checkFirstLaunchStatus &> /dev/null; then \
+		echo "Accepting newly installed Xcode license..."; \
+		sudo xcodebuild -license accept; \
+		sudo xcodebuild -runFirstLaunch || true; \
+	fi
 
 clean-stow-conflicts:
 	@echo "Removing conflicting files in $$HOME..."
