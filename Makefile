@@ -32,21 +32,7 @@ xcode-license:
 brew: homebrew xcode-license
 	@echo "Installing packages from Brewfile..."
 	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
-	if ! brew bundle --file=Brewfile; then \
-		if [ -d "/Applications/Xcode.app" ] && command -v xcodebuild &> /dev/null && ! xcodebuild -checkFirstLaunchStatus &> /dev/null; then \
-			echo "Xcode was just installed via mas; accepting Xcode license and retrying brew bundle..."; \
-			sudo xcodebuild -license accept; \
-			sudo xcodebuild -runFirstLaunch || true; \
-			brew bundle --file=Brewfile; \
-		else \
-			exit 1; \
-		fi; \
-	fi
-	@if [ -d "/Applications/Xcode.app" ] && command -v xcodebuild &> /dev/null && ! xcodebuild -checkFirstLaunchStatus &> /dev/null; then \
-		echo "Accepting newly installed Xcode license..."; \
-		sudo xcodebuild -license accept; \
-		sudo xcodebuild -runFirstLaunch || true; \
-	fi
+	brew bundle --file=Brewfile
 
 clean-stow-conflicts:
 	@echo "Removing conflicting files in $$HOME..."

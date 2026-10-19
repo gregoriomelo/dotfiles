@@ -29,6 +29,24 @@ brew 'mise'
 
 # apple
 mas 'XCode', id: 497799835
+Homebrew::Bundle::MacAppStore.singleton_class.prepend(Module.new do
+  def accept_xcode_license!
+    return unless File.directory?('/Applications/Xcode.app')
+    return if Kernel.system('xcodebuild -checkFirstLaunchStatus >/dev/null 2>&1')
+
+    puts 'Accepting Xcode license and running first-launch tasks...'
+    Kernel.system('sudo', 'xcodebuild', '-license', 'accept')
+    Kernel.system('sudo', 'xcodebuild', '-runFirstLaunch')
+  end
+
+  def install_batch!(entries, **kwargs)
+    super.tap { accept_xcode_license! }
+  end
+
+  def install!(name, *args, **kwargs)
+    super.tap { accept_xcode_license! if name == 'XCode' }
+  end
+end) if defined?(Homebrew::Bundle::MacAppStore)
 
 # jvm
 cask 'temurin' unless system '/usr/libexec/java_home --failfast'
