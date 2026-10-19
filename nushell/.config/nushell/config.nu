@@ -25,6 +25,9 @@ $env.config = {
     }
 }
 
+# mise
+use ($nu.default-config-dir | path join mise.nu)
+
 # Atuin history
 source ~/.config/nushell/atuin.nu
 

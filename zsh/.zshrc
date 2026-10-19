@@ -17,6 +17,11 @@ fi
 
 eval "$(starship init zsh)"
 
+# mise
+if command -v mise &>/dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 

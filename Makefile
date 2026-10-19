@@ -117,6 +117,14 @@ nushell-init: stow
 	    ln -sf "$$HOME/.config/nushell/config.nu" "$$NUDIR/config.nu"; \
 	    ln -sf "$$HOME/.config/nushell/env.nu" "$$NUDIR/env.nu"
 	@echo "✓ Nushell macOS config dir linked"
+	@echo "Generating mise cache for nushell..."
+	@NUDIR="$$HOME/Library/Application Support/nushell"; \
+	    if command -v mise &> /dev/null; then \
+	        mise activate nu > "$$NUDIR/mise.nu"; \
+	    else \
+	        touch "$$NUDIR/mise.nu"; \
+	    fi
+	@echo "✓ Mise nushell activation written"
 
 ghostty-init: stow
 	@echo "Linking macOS Ghostty config to stow-managed ~/.config/ghostty..."

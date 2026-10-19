@@ -19,6 +19,12 @@ claude/.claude/plans
 claude/.claude/tasks
 claude/.claude/mcp-needs-auth-cache.json
 .opencode/
+ai/.config/opencode/.gitignore
+ai/.config/opencode/node_modules/
+ai/.config/opencode/package.json
+ai/.config/opencode/package-lock.json
+ai/.config/opencode/bun.lock
+ai/.config/opencode/service.json
 git/.gitconfig.*
 !git/.gitconfig.local.example
 

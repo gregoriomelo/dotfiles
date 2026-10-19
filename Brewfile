@@ -21,6 +21,7 @@ brew 'atuin'
 brew 'tmux'
 brew 'glow'
 brew 'task'
+brew 'mise'
 
 ###############
 # programming #

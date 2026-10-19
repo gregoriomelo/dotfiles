@@ -63,3 +63,11 @@ if ($env.CONTEXT7_API_KEY? | is-empty) {
 
 # gpg
 $env.GPG_TTY = (try { tty } catch { "" })
+
+# mise
+let mise_path = ($nu.default-config-dir | path join mise.nu)
+if (which mise | is-not-empty) {
+    ^mise activate nu | save $mise_path --force
+} else if not ($mise_path | path exists) {
+    "" | save $mise_path --force
+}
