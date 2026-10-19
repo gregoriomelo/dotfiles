@@ -10,8 +10,9 @@ prepare:
 	@bash scripts/prepare.sh
 
 homebrew:
-	@if ! command -v brew &> /dev/null; then \
+	@if ! command -v brew &> /dev/null && [ ! -x /opt/homebrew/bin/brew ] && [ ! -x /usr/local/bin/brew ]; then \
 		echo "Installing Homebrew..."; \
+		sudo -v; \
 		/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; \
 	else \
 		echo "✓ Homebrew already installed"; \
@@ -19,6 +20,7 @@ homebrew:
 
 brew: homebrew
 	@echo "Installing packages from Brewfile..."
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
 	brew bundle --file=Brewfile
 
 clean-stow-conflicts:
@@ -78,6 +80,7 @@ clean-stow-conflicts:
 
 stow: brew clean-stow-conflicts
 	@echo "Symlinking dotfiles..."
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
 	stow --verbose --dir=. --target=$$HOME $(STOW_PACKAGES)
 	@echo "✓ Dotfiles symlinked"
 
@@ -108,6 +111,7 @@ macos:
 nushell-init: stow
 	@echo "Generating starship cache for nushell..."
 	@mkdir -p $$HOME/.cache/starship
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
 	starship init nu > $$HOME/.cache/starship/init.nu
 	@echo "✓ Starship nushell cache written"
 	@echo "Linking macOS nushell config dir to stow-managed ~/.config/nushell..."
@@ -118,7 +122,8 @@ nushell-init: stow
 	    ln -sf "$$HOME/.config/nushell/env.nu" "$$NUDIR/env.nu"
 	@echo "✓ Nushell macOS config dir linked"
 	@echo "Generating mise cache for nushell..."
-	@NUDIR="$$HOME/Library/Application Support/nushell"; \
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
+	NUDIR="$$HOME/Library/Application Support/nushell"; \
 	    if command -v mise &> /dev/null; then \
 	        mise activate nu > "$$NUDIR/mise.nu"; \
 	    else \
@@ -136,6 +141,7 @@ ghostty-init: stow
 
 rtk-init: stow
 	@echo "Initializing RTK..."
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
 	rtk init -g --auto-patch
 	@echo "✓ RTK initialized"
 
@@ -154,7 +160,8 @@ vim-init: stow
 task-init: stow
 	@echo "Initializing Taskwarrior..."
 	@mkdir -p $$HOME/.task
-	@if [ ! -f "$$HOME/.taskrc" ]; then \
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
+	if [ ! -f "$$HOME/.taskrc" ]; then \
 		echo "Taskwarrior not symlinked properly."; \
 	else \
 		task rc.confirmation=no version > /dev/null 2>&1; \
@@ -180,7 +187,8 @@ default-shell:
 
 quarantine-clean:
 	@echo "Trusting Homebrew binaries (removing quarantine flags)..."
-	@for bin in ollama claude gemini rtk pi; do \
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
+	for bin in ollama claude gemini rtk pi; do \
 		BIN_PATH=$$(which $$bin 2>/dev/null); \
 		if [ -n "$$BIN_PATH" ]; then \
 			sudo xattr -d com.apple.quarantine "$$BIN_PATH" 2>/dev/null || true; \
@@ -190,14 +198,16 @@ quarantine-clean:
 
 ai-plugins:
 	@echo "Syncing AI agent plugins..."
-	@bash scripts/setup-ai-plugins.sh
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
+	bash scripts/setup-ai-plugins.sh
 	@echo "✓ AI agent plugins synced"
 
 gpg-init: stow
 	@echo "Configuring GPG agent..."
 	@mkdir -p "$$HOME/.gnupg"
 	@chmod 700 "$$HOME/.gnupg"
-	@gpgconf --kill gpg-agent
+	@export PATH="/opt/homebrew/bin:/usr/local/bin:$$PATH"; \
+	gpgconf --kill gpg-agent
 	@echo "✓ GPG agent configured with pinentry-mac"
 
 post-setup:
