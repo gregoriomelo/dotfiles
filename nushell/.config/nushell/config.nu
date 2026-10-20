@@ -1,3 +1,6 @@
+# Proton Pass CLI
+$env.PROTON_PASS_KEY_PROVIDER = 'fs'
+
 # Starship prompt
 # Generate once with: starship init nu | save -f ~/.cache/starship/init.nu
 source ~/.cache/starship/init.nu

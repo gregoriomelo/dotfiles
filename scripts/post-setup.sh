@@ -79,6 +79,7 @@ if command -v gh >/dev/null 2>&1; then
 fi
 
 # Proton Pass CLI
+export PROTON_PASS_KEY_PROVIDER=fs
 if command -v pass-cli >/dev/null 2>&1; then
     if pass-cli info >/dev/null 2>&1; then
         echo -e "  ${GREEN}✅ Proton Pass CLI (pass-cli) is authenticated.${RESET}"

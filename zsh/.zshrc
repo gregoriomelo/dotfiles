@@ -25,6 +25,9 @@ fi
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 
+# Proton Pass CLI
+export PROTON_PASS_KEY_PROVIDER=fs
+
 # gpg
 export GPG_TTY=$(tty)
 

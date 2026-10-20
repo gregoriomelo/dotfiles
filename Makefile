@@ -1,5 +1,6 @@
-STOW_PACKAGES := ai aliases zsh git tmux glow nushell claude ghostty starship gemini rtk vim pi task atuin
+STOW_PACKAGES := ai aliases zsh bash git tmux glow nushell claude ghostty starship gemini rtk vim pi task atuin
 export PATH := /opt/homebrew/bin:/usr/local/bin:$(PATH)
+export PROTON_PASS_KEY_PROVIDER := fs
 
 .PHONY: prepare setup homebrew xcode-license brew stow clean-stow-conflicts tpm macos quarantine-clean nushell-init ghostty-init rtk-init vim-init task-init openspec-init ai-plugins default-shell gpg-init post-setup health-check
 

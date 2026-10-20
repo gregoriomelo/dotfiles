@@ -123,8 +123,12 @@ dotfiles/
 │   └── .config/nushell/
 │       └── aliases.nu          # Shell aliases (nushell format)
 ├── zsh/                        # Stow package
+│   ├── .zshenv                 # Global Zsh env vars (PROTON_PASS_KEY_PROVIDER, etc.)
 │   ├── .zshrc
 │   └── .zprofile               # Sets Homebrew shell env + DEV_HOME/DOTFILES_HOME
+├── bash/                       # Stow package
+│   ├── .bashrc                 # Bash interactive env + aliases
+│   └── .bash_profile           # Bash login profile (sources .bashrc)
 ├── git/                        # Stow package
 │   ├── .gitconfig
 │   ├── .gitconfig.local.example # Local git override template (~/.gitconfig.local)
@@ -200,8 +204,11 @@ After `make stow`, all of these point to `~/dev/dotfiles`:
 ```
 ~/.aliases                          → aliases/.aliases
 ~/.config/nushell/aliases.nu        → aliases/.config/nushell/aliases.nu
+~/.zshenv                           → zsh/.zshenv
 ~/.zshrc                            → zsh/.zshrc
 ~/.zprofile                         → zsh/.zprofile
+~/.bashrc                           → bash/.bashrc
+~/.bash_profile                     → bash/.bash_profile
 ~/.gitconfig                        → git/.gitconfig
 ~/.gitconfig.local.example          → git/.gitconfig.local.example
 ~/.config/git/global_ignore         → git/.config/git/global_ignore
@@ -433,5 +440,6 @@ dscl . -read "$HOME" UserShell   # should show /opt/homebrew/bin/nu
   - [2026-08-27: Fresh Machine Bootstrap Evaluation and Fixes](docs/tasks/2026-08-27-fresh-machine-bootstrap-evaluation-and-fixes.md)
   - [2026-08-27: Mas in Brewfile & Gitconfig Local Template](docs/tasks/2026-08-27-mas-in-brewfile-and-gitconfig-local-template.md)
   - [2026-08-27: Add Make Prepare Target](docs/tasks/2026-08-27-add-make-prepare-target.md)
+  - [2026-10-20: Configure PROTON_PASS_KEY_PROVIDER=fs Across All Shells](docs/tasks/2026-10-20-proton-pass-key-provider-all-shells.md)
 
 See also: `claude/.claude/CLAUDE.md` for global Claude Code instructions.
