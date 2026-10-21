@@ -441,5 +441,6 @@ dscl . -read "$HOME" UserShell   # should show /opt/homebrew/bin/nu
   - [2026-08-27: Mas in Brewfile & Gitconfig Local Template](docs/tasks/2026-08-27-mas-in-brewfile-and-gitconfig-local-template.md)
   - [2026-08-27: Add Make Prepare Target](docs/tasks/2026-08-27-add-make-prepare-target.md)
   - [2026-10-20: Configure PROTON_PASS_KEY_PROVIDER=fs Across All Shells](docs/tasks/2026-10-20-proton-pass-key-provider-all-shells.md)
+  - [2026-10-21: Enable Terminal Hyperlinks in Tmux](docs/tasks/2026-10-21-tmux-hyperlinks-terminal-features.md)
 
 See also: `claude/.claude/CLAUDE.md` for global Claude Code instructions.
