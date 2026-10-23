@@ -1,0 +1,5 @@
+# dotfiles/local-ai/Brewfile
+# Isolated packages for local AI development
+
+brew "ollama"
+brew "opencode"

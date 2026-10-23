@@ -1,0 +1,14 @@
+# Local LLM Models Manifest - 1 Per Category + Multimodal
+# Formats: <model_name> [comment]
+
+# 1. Coding (Agentic repository development, OpenCode/Pi)
+qwen3-coder:30b
+
+# 2. Planning & Deep Reasoning (Architecture & complex debugging)
+deepseek-r1:32b
+
+# 3. Daily Automation & Chat (Low-latency general assistant)
+qwen3:14b
+
+# 4. Multimodal / Vision (UI to code, diagrams, visual reasoning)
+qwen3-vl:30b

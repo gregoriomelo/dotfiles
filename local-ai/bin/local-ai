@@ -1,0 +1,200 @@
+#!/usr/bin/env bash
+# local-ai: Interactive launcher for local LLM coding agents
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+MANIFEST="$SCRIPT_DIR/models.manifest"
+OPENCODE_CONFIG_FILE="$SCRIPT_DIR/config/opencode-provider.json"
+
+AGENT=""
+MODEL=""
+CHECK_ONLY=false
+CONTEXT_SIZE="${OLLAMA_NUM_CTX:-32768}"
+
+usage() {
+  cat <<EOF
+Usage: local-ai [options] [-- <extra-agent-args>]
+
+Options:
+  -a, --agent <name>    Coding agent to use: opencode or pi (default: opencode)
+  -m, --model <name>    Model name (e.g. qwen3-coder:30b, deepseek-r1:32b, qwen3:14b, qwen3-vl:30b)
+  -c, --context <size>  Context window size in tokens (default: 32768)
+  --check               Dry-run diagnostics check and model status
+  -h, --help            Show this help message
+
+Examples:
+  local-ai                          # Interactive launcher
+  local-ai -a opencode -m qwen3-coder:30b
+  local-ai -a pi -m qwen3:14b
+  local-ai --check
+EOF
+  exit 0
+}
+
+# Parse options
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      usage
+      ;;
+    -a|--agent)
+      AGENT="$2"
+      shift 2
+      ;;
+    -m|--model)
+      MODEL="$2"
+      shift 2
+      ;;
+    -c|--context)
+      CONTEXT_SIZE="$2"
+      shift 2
+      ;;
+    --check)
+      CHECK_ONLY=true
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+# Read manifest models
+read_manifest_models() {
+  if [[ -f "$MANIFEST" ]]; then
+    grep -v '^[[:space:]]*#' "$MANIFEST" | grep -v '^[[:space:]]*$' | awk '{print $1}'
+  fi
+}
+
+MANIFEST_MODELS=($(read_manifest_models))
+
+if [[ "$CHECK_ONLY" = true ]]; then
+  echo "==> local-ai Diagnostic Check"
+  echo "Config directory: $SCRIPT_DIR"
+  echo "Context size: $CONTEXT_SIZE"
+  echo "${#MANIFEST_MODELS[@]} models configured in manifest: ${MANIFEST_MODELS[*]:-}"
+  
+  if curl -s -f http://localhost:11434/api/tags >/dev/null 2>&1; then
+    echo "✓ Ollama API: Reachable (http://localhost:11434)"
+    echo "Installed local models:"
+    ollama list 2>/dev/null || echo "  (unable to list)"
+  else
+    echo "✗ Ollama API: Not reachable (start with 'make -C \"$SCRIPT_DIR\" serve')"
+  fi
+  exit 0
+fi
+
+# Ensure Ollama server is running
+ensure_server() {
+  if ! curl -s -f http://localhost:11434/api/tags >/dev/null 2>&1; then
+    echo "==> Ollama server is not running."
+    echo "Starting Ollama background server..."
+    make -C "$SCRIPT_DIR" serve
+  fi
+}
+
+# Ensure the selected model is pulled
+ensure_model() {
+  local model="$1"
+  # Check if model tag is in ollama list or api
+  if ! curl -s http://localhost:11434/api/tags | grep -q "\"name\":\"${model}"; then
+    echo "==> Model '$model' is not yet downloaded."
+    if [[ -t 0 ]]; then
+      read -rp "Would you like to pull '$model' now? [Y/n]: " pull_choice
+      pull_choice="${pull_choice:-y}"
+      if [[ "$pull_choice" =~ ^[Nn] ]]; then
+        echo "Error: Cannot proceed without model '$model'." >&2
+        exit 1
+      fi
+    fi
+    echo "==> Pulling model '$model'..."
+    ollama pull "$model"
+  fi
+}
+
+ensure_server
+
+# Select Model
+if [[ -z "$MODEL" ]]; then
+  if [[ ${#MANIFEST_MODELS[@]} -gt 0 ]]; then
+    # Interactive selection if terminal attached
+    if [[ -t 0 ]]; then
+      echo ""
+      echo "Select a local model:"
+      for i in "${!MANIFEST_MODELS[@]}"; do
+        echo "  $((i + 1))) ${MANIFEST_MODELS[$i]}"
+      done
+      read -rp "Choice [1]: " choice
+      choice="${choice:-1}"
+      index=$((choice - 1))
+      if [[ $index -ge 0 && $index -lt ${#MANIFEST_MODELS[@]} ]]; then
+        MODEL="${MANIFEST_MODELS[$index]}"
+      else
+        MODEL="${MANIFEST_MODELS[0]}"
+      fi
+    else
+      MODEL="${MANIFEST_MODELS[0]}"
+    fi
+  else
+    MODEL="qwen3-coder:30b"
+  fi
+fi
+
+# Select Agent
+if [[ -z "$AGENT" ]]; then
+  if [[ -t 0 ]]; then
+    echo ""
+    echo "Select an agent:"
+    echo "  1) opencode (TUI workspace agent, recommended)"
+    echo "  2) pi (minimal coding assistant)"
+    read -rp "Choice [1]: " agent_choice
+    agent_choice="${agent_choice:-1}"
+    case "$agent_choice" in
+      1) AGENT="opencode" ;;
+      2) AGENT="pi" ;;
+      *) AGENT="opencode" ;;
+    esac
+  else
+    AGENT="opencode"
+  fi
+fi
+
+export OLLAMA_NUM_CTX="$CONTEXT_SIZE"
+
+ensure_model "$MODEL"
+
+echo "==> Launching $AGENT with model $MODEL (context: $CONTEXT_SIZE)..."
+
+case "$AGENT" in
+  opencode)
+    if ! command -v opencode >/dev/null 2>&1; then
+      echo "Error: opencode is not installed. Run 'make -C \"$SCRIPT_DIR\" setup' first." >&2
+      exit 1
+    fi
+    # Stop any existing background service so it restarts with the newly selected model env
+    opencode service stop >/dev/null 2>&1 || true
+    # Update any active/resumed OpenCode sessions so resumed tabs also switch to the selected model
+    if [[ -f "$HOME/.local/share/opencode/opencode.db" ]] && command -v sqlite3 >/dev/null 2>&1; then
+      sqlite3 "$HOME/.local/share/opencode/opencode.db" \
+        "UPDATE session_v2 SET model = '{\"id\":\"$MODEL\",\"providerID\":\"ollama\"}' WHERE time_archived IS NULL;" 2>/dev/null || true
+    fi
+    export OPENCODE_CONFIG="$OPENCODE_CONFIG_FILE"
+    export OPENCODE_CONFIG_CONTENT="{\"model\":\"ollama/$MODEL\"}"
+    exec opencode "$@"
+    ;;
+  pi)
+    if ! command -v pi >/dev/null 2>&1; then
+      echo "Error: pi is not installed." >&2
+      exit 1
+    fi
+    exec pi --model "$MODEL" "$@"
+    ;;
+  *)
+    echo "Error: Unknown agent '$AGENT'. Supported: opencode, pi." >&2
+    exit 1
+    ;;
+esac

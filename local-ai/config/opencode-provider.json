@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama/qwen3-coder:30b",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (Local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3-coder:30b": {
+          "name": "Qwen 3 Coder 30B (MoE)"
+        },
+        "deepseek-r1:32b": {
+          "name": "DeepSeek R1 32B (Reasoning)"
+        },
+        "qwen3:14b": {
+          "name": "Qwen 3 14B (Chat/Tasks)"
+        },
+        "qwen3-vl:30b": {
+          "name": "Qwen 3 VL 30B (Vision)"
+        }
+      }
+    }
+  }
+}
